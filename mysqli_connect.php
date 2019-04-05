@@ -6,8 +6,9 @@ DEFINE ('DB_USER', 'root');
 DEFINE ('DB_PASSWORD', 'seedubuntu');
 DEFINE ('DB_NAME', 'brms');
 
-// Make the connection:
-$dbcon = @mysqli_connect (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR die ('Could not connect to MySQL: ' . mysqli_connect_error() );
+//Create connection ot database
+$dbcon = mysqli_connect (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR die ('Could not connect to MySQL: ' . mysqli_connect_error() );
 
-// Set the encoding...
+//set encoding
 mysqli_set_charset($dbcon, 'utf8');
+?>

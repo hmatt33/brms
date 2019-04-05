@@ -23,7 +23,7 @@
 			require ('mysqli_connect.php');
 			//check username:
 			if (!empty($_POST['Username'])) {
-					$user = mysqli_real_escape_string($dbcon, $_POST['Username']);
+				$user = mysqli_real_escape_string($dbcon, $_POST['Username']);
 			} else {
 				$user = FALSE;
 				echo '<p class="error">You forgot to enter your username.</p>';
@@ -37,12 +37,12 @@
 			}
 			if ($user && $pass){
 			//if no problems
-				// Retrieve the user_id, first_name and last name for person with that email and password
+				// Retrieve the user id, first name, and last name for user with that email and password
 				$sql = "SELECT UserID, FirstName, LastName FROM Users WHERE (Username='$user' AND Password='$pass')";
 				//run the query and assign it to the variable $result
 				$result = mysqli_query ($dbcon, $sql);
 				//Count the number of rows that match the email/password combination
-				if (@mysqli_num_rows($result) == 1) {
+				if (mysqli_num_rows($result) == 1) {
 				//The user input matched the database record
 					// Start the session, fetch the record and insert the three values in an array
 					session_start();

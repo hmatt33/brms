@@ -24,7 +24,7 @@
     } else {
         //use this block of code to calculate the number of pages
         //First, check for the total number of records
-        $q = "SELECT COUNT(user_id) FROM users";
+        $q = "SELECT COUNT(BuildingID) FROM Buildings";
         $result = @mysqli_query ($dbcon, $q);
         $row = @mysqli_fetch_array ($result, MYSQLI_NUM);
         $records = $row[0];
@@ -44,13 +44,14 @@
         $start = 0;
     }
     // Make the query:
-    $q = "SELECT BuildingID, Address, PhoneNumber, NumOfResidents, TotalRooms, TotalVacRooms, Edit, Del FROM Buildings ORDER BY BuildingsID ASC LIMIT $start, $pagerows";		
+    $q = "SELECT BuildingID, Name, Address, PhoneNumber, NumOfResidents, TotalRooms, TotalVacRooms, Edit, Del FROM Buildings ORDER BY BuildingID ASC LIMIT $start, $pagerows";		
     $result = @mysqli_query ($dbcon, $q); // Run the query.
     $buildings = mysqli_num_rows($result);
     if ($result) { // If it ran OK, display the records.
     // Table header.
     echo '<table>
         <tr><td><b>Building ID</b></td>
+        <tr><td><b>Building Name</b></td>
         <td><b>Address</b></td>
         <td><b>Phone Number</b></td>
         <td><b>Number of Residents</b></td>
@@ -63,6 +64,7 @@
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         echo '<tr>
             <td>' . $row['BuildingID'] . '</td>
+            <td>' . $row['Name'] . '</td>
             <td>' . $row['Address'] . '</td>
             <td>' . $row['PhoneNumber'] . '</td>
             <td>' . $row['NumOfResidents'] . '</td>

@@ -25,8 +25,8 @@
         //use this block of code to calculate the number of pages
         //First, check for the total number of records
         $q = "SELECT COUNT(BuildingID) FROM Buildings";
-        $result = @mysqli_query ($dbcon, $q);
-        $row = @mysqli_fetch_array ($result, MYSQLI_NUM);
+        $result = mysqli_query ($dbcon, $q);
+        $row = mysqli_fetch_array ($result, MYSQLI_NUM);
         $records = $row[0];
         //Now calculate the number of pages
         if ($records > $pagerows) { //if the number of records will fill more than one page
@@ -45,7 +45,7 @@
     }
     // Make the query:
     $q = "SELECT BuildingID, Name, Address, PhoneNumber, TotalRooms, TotalVacRooms, Edit, Del FROM Buildings ORDER BY BuildingID ASC LIMIT $start, $pagerows";		
-    $result = @mysqli_query ($dbcon, $q); // Run the query.
+    $result = mysqli_query ($dbcon, $q); // Run the query.
     $buildings = mysqli_num_rows($result);
     if ($result) { // If it ran OK, display the records.
     // Table header.
@@ -81,8 +81,8 @@
         echo '<p>' . mysqli_error($dbcon) . '<br><br>Query: ' . $q . '</p>';
     } // End of if ($result). Now display the total number of records/buildings.
     $q = "SELECT COUNT(BuildingID) FROM Buildings";
-    $result = @mysqli_query ($dbcon, $q);
-    $row = @mysqli_fetch_array ($result, MYSQLI_NUM);
+    $result = mysqli_query ($dbcon, $q);
+    $row = mysqli_fetch_array ($result, MYSQLI_NUM);
     $buildings = $row[0];
     mysqli_close($dbcon); // Close the database connection.
     echo "<p>Total amount of Buildings: $buildings</p>";

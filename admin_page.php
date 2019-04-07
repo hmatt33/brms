@@ -1,8 +1,6 @@
 <?php											
     session_start();
     if (!isset($_SESSION['UserLevel']) or ($_SESSION['UserLevel'] != 1)) {
-        $alertmsg = "Sorry, you do not have admin status";
-        echo "<script type='text/javascript'>alert('$alertmsg');</script>";
         header("Location: buildings.php");
         exit();
     }
@@ -62,9 +60,9 @@
     $buildings = mysqli_num_rows($result);
     if ($result) { // If it ran OK, display the records.
     // Table header.
-    echo '<table>
+    echo '<table cellspacing="15">
         <tr><td><b>User ID</b></td>
-        <tr><td><b>First Name</b></td>
+        <td><b>First Name</b></td>
         <td><b>Last Name</b></td>
         <td><b>Email</b></td>
         <td><b>Username</b></td>
@@ -73,13 +71,14 @@
         </tr>';
     // Fetch and print all the records:
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        $_SESSION['UserID'] = $row['UserID'];
         echo '<tr>
             <td>' . $row['UserID'] . '</td>
             <td>' . $row['FirstName'] . '</td>
             <td>' . $row['LastName'] . '</td>
             <td>' . $row['Email'] . '</td>
             <td>' . $row['Username'] . '</td>
-            <td><a href="edit_user.php?id=' . $row['UserID'] . '">Delete</a></td>
+            <td><a href="edit_user.php?id=' . $row['UserID'] . '">Edit</a></td>
             <td><a href="delete_user.php?id=' . $row['UserID'] . '">Delete</a></td>
             </tr>';
         }
@@ -91,12 +90,12 @@
         // Debugging message:
         echo '<p>' . mysqli_error($dbcon) . '<br><br>Query: ' . $q . '</p>';
     } // End of if ($result). Now display the total number of records/buildings.
-    $q = "SELECT COUNT(BuildingID) FROM Buildings";
+    $q = "SELECT COUNT(UserID) FROM Users";
     $result = mysqli_query ($dbcon, $q);
     $row = mysqli_fetch_array ($result, MYSQLI_NUM);
-    $buildings = $row[0];
+    $users = $row[0];
     mysqli_close($dbcon); // Close the database connection.
-    echo "<p>Total amount of Buildings: $buildings</p>";
+    echo "<p>Total amount of Users: $users</p>";
     if ($pages > 1) {
     echo '<p>';
     //What number is the current page?

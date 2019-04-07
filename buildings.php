@@ -94,11 +94,11 @@
         $current_page = ($start/$pagerows) + 1;
         //If the page is not the first page then create a Previous link
         if ($current_page != 1) {
-        echo '<a href="admin_view_users.php?s=' . ($start - $pagerows) . '&p=' . $pages . '">Previous</a> ';
+        echo '<a href="buildings.php?s=' . ($start - $pagerows) . '&p=' . $pages . '">Previous</a> ';
         }
         //Create a Next link
         if ($current_page != $pages) {
-        echo '<a href="admin_view_users.php?s=' . ($start + $pagerows) . '&p=' . $pages . '">Next</a> ';
+        echo '<a href="buildings.php?s=' . ($start + $pagerows) . '&p=' . $pages . '">Next</a> ';
         }
         echo '</p>';
     }

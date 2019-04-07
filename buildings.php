@@ -49,9 +49,9 @@
     $buildings = mysqli_num_rows($result);
     if ($result) { // If it ran OK, display the records.
     // Table header.
-    echo '<table>
+    echo '<table cellspacing="15">
         <tr><td><b>Building ID</b></td>
-        <tr><td><b>Building Name</b></td>
+        <td><b>Building Name</b></td>
         <td><b>Address</b></td>
         <td><b>Phone Number</b></td>
         <td><b>Total Rooms</b></td>
@@ -61,6 +61,7 @@
         </tr>';
     // Fetch and print all the records:
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        $_SESSION['BuildingID'] = $row['BuildingID'];
         echo '<tr>
             <td>' . $row['BuildingID'] . '</td>
             <td>' . $row['Name'] . '</td>
@@ -68,7 +69,7 @@
             <td>' . $row['PhoneNumber'] . '</td>
             <td>' . $row['TotalRooms'] . '</td>
             <td>' . $row['TotalVacRooms'] . '</td>
-            <td><a href="edit_building.php?id=' . $row['BuildingID'] . '">Delete</a></td>
+            <td><a href="edit_building.php?id=' . $row['BuildingID'] . '">Edit</a></td>
             <td><a href="delete_building.php?id=' . $row['BuildingID'] . '">Delete</a></td>
             </tr>';
         }

@@ -57,7 +57,6 @@
             <input id="submit-no" type="submit" name="sure" value="No">
             <input type="hidden" name="BuildingID" value="' . $id . '">
             </form>';
-
         } else { // Not a valid user ID.
             echo '<p class="error">This page has been accessed in error.</p>';
             echo '<p>&nbsp;</p>';
@@ -65,7 +64,6 @@
     } // End of the main submission conditional.
     mysqli_close($dbcon );
     echo '<p>&nbsp;</p>';
-
     include ('footer.php');
 ?>
 </div>

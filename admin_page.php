@@ -62,9 +62,9 @@
     $buildings = mysqli_num_rows($result);
     if ($result) { // If it ran OK, display the records.
     // Table header.
-    echo '<table>
+    echo '<table cellspacing="15">
         <tr><td><b>User ID</b></td>
-        <tr><td><b>First Name</b></td>
+        <td><b>First Name</b></td>
         <td><b>Last Name</b></td>
         <td><b>Email</b></td>
         <td><b>Username</b></td>
@@ -79,7 +79,7 @@
             <td>' . $row['LastName'] . '</td>
             <td>' . $row['Email'] . '</td>
             <td>' . $row['Username'] . '</td>
-            <td><a href="edit_user.php?id=' . $row['UserID'] . '">Delete</a></td>
+            <td><a href="edit_user.php?id=' . $row['UserID'] . '">Edit</a></td>
             <td><a href="delete_user.php?id=' . $row['UserID'] . '">Delete</a></td>
             </tr>';
         }

@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang=en>
 <head>
-    <title>Edit a Building</title>
+    <title>Add a Building</title>
     <meta charset=utf-8>
 </head> 
 <body>
 <div id="container">
 <?php include("header.php"); ?>
 <div id="content">
-<!-- Start of edit buildings page-->
-        <h2>Edit a building</h2>
+<!-- Start of add buildings page-->
+        <h2>Add a building</h2>
     
 <?php 
 require ('mysqli_connect.php'); 
@@ -17,12 +17,12 @@ require ('mysqli_connect.php');
     //looks for a valid building ID, either through GET or POST:
     if ( (isset($_GET['BuildingID'])) && (is_numeric($_GET['BuildingID'])) ) { //from buildings.php
         $id = $_GET['BuildingID'];
-        echo '<h2>Edit Building ID: ';
+        echo '<h2>Add Building ID: ';
         echo $id;
         echo '</h2>';
     } elseif ( (isset($_POST['BuildingID'])) && (is_numeric($_POST['BuildingID'])) ) {
         $id = $_POST['BuildingID'];
-        echo '<h2>Edit Building ID: ';
+        echo '<h2>Add Building ID: ';
         echo $id;
         echo '</h2>';
     } else { // If no valid ID, stop the script
@@ -71,22 +71,22 @@ require ('mysqli_connect.php');
             $result = mysqli_query($dbcon, $q);
             if (mysqli_num_rows($result) == 0) {
                 //if no errors and no duplicate
-                //do the update
-                $q = "UPDATE Buildings SET Name='$name', Address='$addr', PhoneNumber='$phone', TotalRooms='$rooms', TotalVacRooms='$vac' WHERE BuildingID=$id LIMIT 1";
+                //add the new building
+                $q = "INSERT INTO Buildings(Name, Address, PhoneNumber, TotalRooms, TotalVacRooms) VALUES('$name', '$addr', '$phone', '$rooms', '$vac')";
                 $result = mysqli_query ($dbcon, $q);
                 if (mysqli_affected_rows($dbcon) == 1) {
-                    //if updated correctly echo:
-                    echo '<h3>building has been edited.</h3>';
+                    //if added correctly echo:
+                    echo '<h3>building has been added.</h3>';
                 } else {
-                    //if update failed
+                    //if add building failed
                     //error message
-                    echo '<p class="error">The building could not be edited due to a system error. We apologize for the inconvenience.</p>';
+                    echo '<p class="error">The building could not be added due to a system error. We apologize for the inconvenience.</p>';
                     //debug message
                     echo '<p>' . mysqli_error($dbcon) . '<br />Query: ' . $q . '</p>';
                 }
             } else {
                 //building already exits
-                echo '<p class="error">building with this address and phone number already exits</p>';
+                echo '<p class="error">building with this address and phone number already exists</p>';
             }
         } else { // Display the errors.
             echo '<p class="error">The following error(s) occurred:<br />';
@@ -104,8 +104,8 @@ require ('mysqli_connect.php');
     if (mysqli_num_rows($result) == 1) {
         //get the building info
         $row = mysqli_fetch_array ($result, MYSQLI_NUM);
-        //create the edit form:
-        echo '<form action="edit_building.php" method="post">
+        //create the add form:
+        echo '<form action="add_building.php" method="post">
         <p><label class="label" for="Name">Building Name:</label><input class="fl-left" type="text" name="Name" size="30" maxlength="50" value="' . $row[0] . '"></p>
         <br>
         <p><label class="label" for="Address">Building Address:</label><input class="fl-left" type="text" name="Address" size="30" maxlength="50" value="' . $row[1] . '"></p>
@@ -116,7 +116,7 @@ require ('mysqli_connect.php');
         <br>
         <p><label class="label" for="TotalVacRooms">Number of Vacant Rooms:</label><input class="fl-left" type="number" name="TotalVacRooms" size="30" maxlength="50" value="' . $row[4] . '"></p>
         <br>
-        <p><input id="submit" type="submit" name="submit" value="Edit"></p>
+        <p><input id="submit" type="submit" name="submit" value="Add"></p>
         <br>
         <input type="hidden" name="BuildingID" value="' . $id . '" />
         </form>';

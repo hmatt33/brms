@@ -67,7 +67,7 @@
         if (empty($errors)) {
             //check to make sure it isn't a duplicate
             //check the name, address and phone number
-            $q = "SELECT BuildingID FROM Buildings WHERE Name='$name' AND 'Address='$addr' AND PhoneNumber='$phone' AND BuildingID != $id";
+            $q = "SELECT BuildingID FROM Buildings WHERE Name='$name' AND Address='$addr' AND PhoneNumber='$phone' AND BuildingID != $id";
             $result = @mysqli_query($dbcon, $q);
             if (mysqli_num_rows($result) == 0) {
                 //if no errors and no duplicate

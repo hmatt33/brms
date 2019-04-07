@@ -27,9 +27,18 @@ The Team is just beginning on the implementation stage of the project. BRMS is a
     * admin is the only one able to create new users, edit/delete users
 * FAQ page has been started
 * Header has been updated to inlcude admin linkns
+* edit user is done
     
 ## Planned Additions:
-*
+* add buildings
+* add user
+* delete user
+* display residents
+    * select a building and see residents that live in that building
+    * add/edit/delete residents
+* email a resident
+* sort residents
+* search for residents
 
 ### Acknowledgments/References/Sources
 

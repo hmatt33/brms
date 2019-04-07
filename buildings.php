@@ -44,7 +44,7 @@
         $start = 0;
     }
     // Make the query:
-    $q = "SELECT BuildingID, Name, Address, PhoneNumber, NumOfResidents, TotalRooms, TotalVacRooms, Edit, Del FROM Buildings ORDER BY BuildingID ASC LIMIT $start, $pagerows";		
+    $q = "SELECT BuildingID, Name, Address, PhoneNumber, TotalRooms, TotalVacRooms, Edit, Del FROM Buildings ORDER BY BuildingID ASC LIMIT $start, $pagerows";		
     $result = @mysqli_query ($dbcon, $q); // Run the query.
     $buildings = mysqli_num_rows($result);
     if ($result) { // If it ran OK, display the records.
@@ -54,7 +54,6 @@
         <tr><td><b>Building Name</b></td>
         <td><b>Address</b></td>
         <td><b>Phone Number</b></td>
-        <td><b>Number of Residents</b></td>
         <td><b>Total Rooms</b></td>
         <td><b>Total Vacancies</b></td>
         <td><b>Edit</b></td>
@@ -67,7 +66,6 @@
             <td>' . $row['Name'] . '</td>
             <td>' . $row['Address'] . '</td>
             <td>' . $row['PhoneNumber'] . '</td>
-            <td>' . $row['NumOfResidents'] . '</td>
             <td>' . $row['TotalRooms'] . '</td>
             <td>' . $row['TotalVacRooms'] . '</td>
             <td><a href="edit_building.php?id=' . $row['BuildingID'] . '">Delete</a></td>

@@ -10,7 +10,7 @@
 <div id="content">
 <!-- Start of add buildings page-->
         <h2>Add a building</h2>
-    
+
 <?php 
 require ('mysqli_connect.php'); 
     //After clicking the add building link
@@ -84,18 +84,18 @@ require ('mysqli_connect.php');
     } // End of the conditionals
 ?>
     <h2>Register</h2>
-    <form action="register-page.php" method="post">
+    <form action="add_building.php" method="post">
         <p><label class="label" for="Name">Building Name:</label><input id="fname" type="text" name="Name" size="30" maxlength="30" value="<?php if (isset($_POST['Name'])) echo $_POST['Name']; ?>"></p>
         <p><label class="label" for="Address">Buiding Address:</label><input id="lname" type="text" name="Address" size="30" maxlength="40" value="<?php if (isset($_POST['Address'])) echo $_POST['Address']; ?>"></p>
-        <p><label class="label" for="PhoneNumber">Building Phone Number:</label><input id="PhoneNumber" type="number" name="Phone Number" size="30" maxlength="60" value="<?php if (isset($_POST['PhoneNumber'])) echo $_POST['PhoneNumber']; ?>" > </p>
+        <p><label class="label" for="PhoneNumber">Building Phone Number:</label><input id="PhoneNumber" type="number" name="PhoneNumber" size="30" maxlength="60" value="<?php if (isset($_POST['PhoneNumber'])) echo $_POST['PhoneNumber']; ?>" > </p>
         <p><label class="label" for="TotalRooms">Total Number of Rooms:</label><input id="TotalRooms" type="number" name="TotalRooms" size="30" maxlength="60" value="<?php if (isset($_POST['TotalRooms'])) echo $_POST['TotalRooms']; ?>" > </p>
         <p><label class="label" for="TotalVacRooms">Total Vacant Rooms:</label><input id="TotalVacRooms" type="number" name="TotalVacRooms" size="30" maxlength="60" value="<?php if (isset($_POST['TotalVacRooms'])) echo $_POST['TotalVacRooms']; ?>" > </p>
         <p><input id="submit" type="submit" name="submit" value="Register"></p>
     </form>
     
     <footer>
-		<?php include('footer.php'); ?>
-	</footer>
+        <?php include('footer.php'); ?>
+    </footer>
 </div>
 </div>
 </body>

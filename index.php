@@ -38,7 +38,7 @@
 			if ($user && $pass){
 			//if no problems
 				// Retrieve the user id, first name, and last name for user with that email and password
-				$sql = "SELECT UserID, FirstName, LastName FROM Users WHERE (Username='$user' AND Password='$pass')";
+				$sql = "SELECT UserID, FirstName, LastName, UserLevel FROM Users WHERE (Username='$user' AND Password='$pass')";
 				//run the query and assign it to the variable $result
 				$result = mysqli_query ($dbcon, $sql);
 				//Count the number of rows that match the email/password combination

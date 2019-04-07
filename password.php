@@ -18,7 +18,7 @@ $passwd = $_POST["password"];
 $newpass = $_POST["newpass"];
 $confirmnew = $_POST["confirmnew"];
 if($confirmnew == $newpass){
-    $sql = "UPDATE Users SET Password='$newpass', LastName='$password' WHERE Username='$uname'";
+    $sql = "UPDATE Users SET Password='$newpass' WHERE Username='$uname'";
 } else {
     echo '<p>passwords do no match.</p>';
     header("location: password.html");}

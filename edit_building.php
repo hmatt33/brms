@@ -29,7 +29,7 @@
         include ('footer.php'); 
         exit();
     }
-    require ('./mysqli_connect.php'); 
+    require ('mysqli_connect.php'); 
     // Has the form been submitted?
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors = array();
@@ -68,12 +68,12 @@
             //check to make sure it isn't a duplicate
             //check the name, address and phone number
             $q = "SELECT BuildingID FROM Buildings WHERE Name='$name' AND Address='$addr' AND PhoneNumber='$phone' AND BuildingID != $id";
-            $result = @mysqli_query($dbcon, $q);
+            $result = mysqli_query($dbcon, $q);
             if (mysqli_num_rows($result) == 0) {
                 //if no errors and no duplicate
                 //do the update
                 $q = "UPDATE Buildings SET Name='$name', Address='$addr', PhoneNumber='$phone', TotalRooms='$rooms', TotalVacRooms='$vac' WHERE BuildingID=$id LIMIT 1";
-                $result = @mysqli_query ($dbcon, $q);
+                $result = mysqli_query ($dbcon, $q);
                 if (mysqli_affected_rows($dbcon) == 1) {
                     //if updated correctly echo:
                     echo '<h3>building has been edited.</h3>';
@@ -99,7 +99,7 @@
     } // End of the conditionals
     // Select the user's information:
     $q = "SELECT Name, Address, PhoneNumber, TotalRooms, TotalVacRooms FROM Buildings WHERE BuildingID=$id";
-    $result = @mysqli_query ($dbcon, $q);
+    $result = mysqli_query ($dbcon, $q);
     //if id is valid
     if (mysqli_num_rows($result) == 1) {
         //get the building info

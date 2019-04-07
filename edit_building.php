@@ -3,7 +3,8 @@
 <head>
     <title>Edit a Building</title>
     <meta charset=utf-8>
-</head> 
+</head>
+
 <body>
 <div id="container">
 <?php include("header.php"); ?>
@@ -12,16 +13,15 @@
         <h2>Edit a building</h2>
     
 <?php 
-require ('mysqli_connect.php'); 
     //After clicking the Edit link in the builings page
     //looks for a valid building ID, either through GET or POST:
-    if ( (isset($_GET['BuildingID'])) && (is_numeric($_GET['BuildingID'])) ) { //from buildings.php
-        $id = $_GET['BuildingID'];
+    if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { //from buildings.php
+        $id = $_GET['id'];
         echo '<h2>Edit Building ID: ';
         echo $id;
         echo '</h2>';
-    } elseif ( (isset($_POST['BuildingID'])) && (is_numeric($_POST['BuildingID'])) ) {
-        $id = $_POST['BuildingID'];
+    } elseif ( (isset($_POST['id'])) && (is_numeric($_POST['id'])) ) {
+        $id = $_POST['id'];
         echo '<h2>Edit Building ID: ';
         echo $id;
         echo '</h2>';
@@ -30,6 +30,7 @@ require ('mysqli_connect.php');
         include ('footer.php'); 
         exit();
     }
+    require ('mysqli_connect.php'); 
     // Has the form been submitted?
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors = array();
@@ -118,7 +119,7 @@ require ('mysqli_connect.php');
         <br>
         <p><input id="submit" type="submit" name="submit" value="Edit"></p>
         <br>
-        <input type="hidden" name="BuildingID" value="' . $id . '" />
+        <input type="hidden" name="id" value="' . $id . '" />
         </form>';
     } else {
         echo '<p class="error">This page has been accessed in error.</p>';

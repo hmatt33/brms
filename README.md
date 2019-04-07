@@ -13,24 +13,23 @@ Our Group Name for this project is *OutOfTheBoxProgramming*. The Team consists o
 The Team is just beginning on the implementation stage of the project. BRMS is a websystem built with html,php,and mysql. This websystem is meant to use a database and mulitple tables to keep track of multiple different buildings, and the residents who live there. This system is meant to be used by the employees of a realestate company, the only ones who will have a valid login is an employee. This system should let the company add/remove/edit a building's information, as well as add/remove/edit a resident's information. The system will allow the user to select a building, and be able to see a list of all residents within that building.
 
 ## Current Progress:
-
-* Login ability is near completion, pages just need to be proofread and checked over by other group members
-* buildings page was started but only has placeholder text, was only used to test login so far as the buildings page is where the user will be directed after login
-* footer is near completion, may need additions
-* stylesheet was created but nothing is in it at the moment
-* mysql connection file was finished
-* logout function done
-* site header was created
-* navigation links in header were created
-* display all buildings page almost complete
-* editing and deleting columns added to all database tables
-* template/procedure for how to display buildings/residents/users figured out
-* ability to only display a certain amount of items on the screen and then have different pages for overflow implemented for Buildings.php
-	* same ability needs to be applied when creating users and resident pages
-* add/edit/delete/display files for residents and users needs to be created
-* add/edit/delete files for buildings needs to be created
-* add/edit/delete/display files for users needs to be created
-	* the page that will display all users is only available to admin
+* Login ability is done
+* Logout ability is done
+* display buildings page is done
+    * edit buildings page is done
+    * delete buildings page is done
+* edit and delete columns added to all tables
+    * edit and delete columns will be used to link to edit/delete pages for users, buildings, and residents
+* ability to only show a certain number of rows on screen and create pages for the rest is done
+* display users page is done
+    * users page is admin only
+    * checks to make sure user has admin status
+    * admin is the only one able to create new users, edit/delete users
+* FAQ page has been started
+* Header has been updated to inlcude admin linkns
+    
+## Planned Additions:
+*
 
 ### Acknowledgments/References/Sources
 

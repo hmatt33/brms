@@ -67,7 +67,7 @@
         if (empty($errors)) {
             //check to make sure it isn't a duplicate
             //check the name, address and phone number
-            $q = "SELECT BuildingID FROM Buildings WHERE Name='$name' AND Address='$addr' AND PhoneNumber='$phone' AND BuildingID != $id";
+            $q = "SELECT BuildingID FROM Buildings WHERE Address='$addr' AND PhoneNumber='$phone' AND BuildingID != $id";
             $result = mysqli_query($dbcon, $q);
             if (mysqli_num_rows($result) == 0) {
                 //if no errors and no duplicate
@@ -86,11 +86,11 @@
                 }
             } else {
                 //building already exits
-                echo '<p class="error">This building with this name and address and phone number already exits</p>';
+                echo '<p class="error">building with this address and phone number already exits</p>';
             }
         } else { // Display the errors.
             echo '<p class="error">The following error(s) occurred:<br />';
-            //echo each error in the error aray
+            //echo each error in the error array
             foreach ($errors as $msg) {
                 echo " - $msg<br />\n";
             }
@@ -105,16 +105,16 @@
         //get the building info
         $row = mysqli_fetch_array ($result, MYSQLI_NUM);
         //create the edit form:
-        echo '<form action="edit_record.php" method="post">
+        echo '<form action="edit_building.php" method="post">
         <p><label class="label" for="Name">Building Name:</label><input class="fl-left" type="text" name="Name" size="30" maxlength="50" value="' . $row[0] . '"></p>
         <br>
         <p><label class="label" for="Address">Building Address:</label><input class="fl-left" type="text" name="Address" size="30" maxlength="50" value="' . $row[1] . '"></p>
         <br>
-        <p><label class="label" for="PhoneNumber">Building Phone Number</label><input class="fl-left" type="number" name="PhoneNumber" size="30" maxlength="50" value="' . $row[2] . '"></p>
+        <p><label class="label" for="PhoneNumber">Building Phone Number:</label><input class="fl-left" type="number" name="PhoneNumber" size="30" maxlength="50" value="' . $row[2] . '"></p>
         <br>
-        <p><label class="label" for="TotalRooms">Total Number of Roomsr</label><input class="fl-left" type="number" name="TotalRooms" size="30" maxlength="50" value="' . $row[3] . '"></p>
+        <p><label class="label" for="TotalRooms">Total Number of Rooms:</label><input class="fl-left" type="number" name="TotalRooms" size="30" maxlength="50" value="' . $row[3] . '"></p>
         <br>
-        <p><label class="label" for="TotalVacRooms">Number of Vacant Rooms</label><input class="fl-left" type="number" name="TotalVacRooms" size="30" maxlength="50" value="' . $row[4] . '"></p>
+        <p><label class="label" for="TotalVacRooms">Number of Vacant Rooms:</label><input class="fl-left" type="number" name="TotalVacRooms" size="30" maxlength="50" value="' . $row[4] . '"></p>
         <br>
         <p><input id="submit" type="submit" name="submit" value="Edit"></p>
         <br>

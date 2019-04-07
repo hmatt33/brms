@@ -79,8 +79,8 @@
             <td>' . $row['LastName'] . '</td>
             <td>' . $row['Email'] . '</td>
             <td>' . $row['Username'] . '</td>
-            <td><a href="edit_building.php?id=' . $row['UserID'] . '">Delete</a></td>
-            <td><a href="delete_building.php?id=' . $row['UserID'] . '">Delete</a></td>
+            <td><a href="edit_user.php?id=' . $row['UserID'] . '">Delete</a></td>
+            <td><a href="delete_user.php?id=' . $row['UserID'] . '">Delete</a></td>
             </tr>';
         }
         echo '</table>'; // Close the table.

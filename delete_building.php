@@ -13,10 +13,10 @@
     
 <?php 
     //check for a valid building ID, through GET or POST:
-    if ( (isset($_GET['BuildingID'])) && (is_numeric($_GET['BuildingID'])) ) { //from building delete link
-        $id = $_GET['BuildingID'];
-    } elseif ( (isset($_POST['BuildingID'])) && (is_numeric($_POST['BuildingID'])) ) { // Form submission.
-        $id = $_POST['BuildingID'];
+    if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { //from building delete link
+        $id = $_GET['id'];
+    } elseif ( (isset($_POST['id'])) && (is_numeric($_POST['id'])) ) { // Form submission.
+        $id = $_POST['id'];
     } else { //if no valid ID, stop the script.
         echo '<p class="error">This page has been accessed in error.</p>';
         include ('footer.php'); 
@@ -40,7 +40,7 @@
                     echo '<p>' . mysqli_error($dbcon ) . '<br />Query: ' . $q . '</p>';
                 }
         } else { // No confirmation of deletion.
-            echo '<h3>The user has NOT been deleted.</h3>';	
+            echo '<h3>The building has NOT been deleted.</h3>';	
         }
     } else { // Show the form.
         // Retrieve the user's information:
@@ -52,10 +52,10 @@
             //display the record being deleted:
             echo "<h3>Are you sure you want to permanently delete $row[0]?</h3>";
             //create the form:
-            echo '<form action="delete_record.php" method="post">
+            echo '<form action="delete_building.php" method="post">
             <input id="submit-yes" type="submit" name="sure" value="Yes"> 
             <input id="submit-no" type="submit" name="sure" value="No">
-            <input type="hidden" name="BuildingID" value="' . $id . '">
+            <input type="hidden" name="id" value="' . $id . '">
             </form>';
 
         } else { // Not a valid user ID.

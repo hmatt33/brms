@@ -21,6 +21,7 @@
 <?php include("header.php"); ?>
 <div id="content">
 <!-- Start of edit users page-->
+<h2>Edit a User</h2>
     
 <?php 
     //After clicking the Edit link in the admin page that displays all users

@@ -1,13 +1,3 @@
-<?php											
-    session_start();
-    if (!isset($_SESSION['UserLevel']) or ($_SESSION['UserLevel'] != 1)) {
-        $alertmsg = "Sorry, you do not have admin status";
-        echo "<script type='text/javascript'>alert('$alertmsg');</script>";
-        header("Location: buildings.php");
-        exit();
-    }
-?>
-
 <!doctype html>
 <html lang=en>
 <head>

@@ -3,15 +3,16 @@
 <head>
     <title>Edit a Building</title>
     <meta charset=utf-8>
-</head>
-    
+</head> 
 <body>
 <div id="container">
 <?php include("header.php"); ?>
 <div id="content">
 <!-- Start of edit buildings page-->
+        <h2>Edit a building</h2>
     
 <?php 
+require ('mysqli_connect.php'); 
     //After clicking the Edit link in the builings page
     //looks for a valid building ID, either through GET or POST:
     if ( (isset($_GET['BuildingID'])) && (is_numeric($_GET['BuildingID'])) ) { //from buildings.php
@@ -29,7 +30,6 @@
         include ('footer.php'); 
         exit();
     }
-    require ('mysqli_connect.php'); 
     // Has the form been submitted?
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors = array();

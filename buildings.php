@@ -14,7 +14,7 @@
 
 <p>
 <?php 
-    //retrieve all the records from the users table.
+    //retrieve all the records from the buildings table.
     require ('mysqli_connect.php'); // Connect to the database.
     
     $pagerows = 4;
@@ -28,13 +28,13 @@
         $result = @mysqli_query ($dbcon, $q);
         $row = @mysqli_fetch_array ($result, MYSQLI_NUM);
         $records = $row[0];
-    //Now calculate the number of pages
-    if ($records > $pagerows) { //if the number of records will fill more than one page
-        //Calculatethe number of pages and round the result up to the nearest integer
-        $pages = ceil ($records/$pagerows);
-    } else {
-        $pages = 1;
-    }
+        //Now calculate the number of pages
+        if ($records > $pagerows) { //if the number of records will fill more than one page
+            //Calculatethe number of pages and round the result up to the nearest integer
+            $pages = ceil ($records/$pagerows);
+        } else {
+            $pages = 1;
+        }
     }
     //page check finished
     //Decalre which record to start with
@@ -89,18 +89,18 @@
     mysqli_close($dbcon); // Close the database connection.
     echo "<p>Total amount of Buildings: $buildings</p>";
     if ($pages > 1) {
-    echo '<p>';
-    //What number is the current page?
-    $current_page = ($start/$pagerows) + 1;
-    //If the page is not the first page then create a Previous link
-    if ($current_page != 1) {
-    echo '<a href="admin_view_users.php?s=' . ($start - $pagerows) . '&p=' . $pages . '">Previous</a> ';
-    }
-    //Create a Next link
-    if ($current_page != $pages) {
-    echo '<a href="admin_view_users.php?s=' . ($start + $pagerows) . '&p=' . $pages . '">Next</a> ';
-    }
-    echo '</p>';
+        echo '<p>';
+        //What number is the current page?
+        $current_page = ($start/$pagerows) + 1;
+        //If the page is not the first page then create a Previous link
+        if ($current_page != 1) {
+        echo '<a href="admin_view_users.php?s=' . ($start - $pagerows) . '&p=' . $pages . '">Previous</a> ';
+        }
+        //Create a Next link
+        if ($current_page != $pages) {
+        echo '<a href="admin_view_users.php?s=' . ($start + $pagerows) . '&p=' . $pages . '">Next</a> ';
+        }
+        echo '</p>';
     }
 ?>
 </p> 

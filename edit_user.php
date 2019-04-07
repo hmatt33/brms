@@ -45,7 +45,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors = array();
         //look for the first name
-        if (empty($_POST['FirstName'])) {
+        if (empty($_SESSION['FirstName'])) {
             $errors[] = 'You forgot to enter the first name.';
         } else {
             $fname = mysqli_real_escape_string($dbcon, trim($_POST['FirstName']));

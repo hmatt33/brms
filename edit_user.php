@@ -1,8 +1,6 @@
 <?php											
     session_start();
     if (!isset($_SESSION['UserLevel']) or ($_SESSION['UserLevel'] != 1)) {
-        $alertmsg = "Sorry, you do not have admin status";
-        echo "<script type='text/javascript'>alert('$alertmsg');</script>";
         header("Location: buildings.php");
         exit();
     }
@@ -26,13 +24,13 @@
 <?php 
     //After clicking the Edit link in the admin page that displays all users
     //looks for a valid user ID, either through GET or POST:
-    if ( (isset($_GET['UserID'])) && (is_numeric($_GET['UserID'])) ) { //from buildings.php
-        $id = $_GET['UserID'];
+    if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { //from buildings.php
+        $id = $_GET['id'];
         echo '<h2>Edit User ID: ';
         echo $id;
         echo '</h2>';
-    } elseif ( (isset($_POST['UserID'])) && (is_numeric($_POST['UserID'])) ) {
-        $id = $_POST['UserID'];
+    } elseif ( (isset($_POST['id'])) && (is_numeric($_POST['id'])) ) {
+        $id = $_POST['id'];
         echo '<h2>Edit User ID: ';
         echo $id;
         echo '</h2>';
@@ -55,7 +53,7 @@
         if (empty($_POST['LastName'])) {
             $errors[] = 'You forgot to enter the last name.';
         } else {
-            $lname = mysqli_real_escape_string($dbcon, trim($_POST['Address']));
+            $lname = mysqli_real_escape_string($dbcon, trim($_POST['LastName']));
         }
         //look for the email
         if (empty($_POST['Email'])) {
@@ -69,6 +67,15 @@
         } else {
             $uname = mysqli_real_escape_string($dbcon, trim($_POST['Username']));
         }
+        if (!empty($_POST['Password'])) {
+            if ($_POST['Password'] != $_POST['Password2']) {
+                $errors[] = 'passwords did not match';
+            } else {
+                $p = mysqli_real_escape_string($dbcon, trim($_POST['Password']));
+            }
+        } else {
+            $errors[] = 'You forgot to enter the password.';
+        }
         //if there are no errors
         if (empty($errors)) {
             //check to make sure it isn't a duplicate
@@ -78,7 +85,7 @@
             if (mysqli_num_rows($result) == 0) {
                 //if no errors and no duplicate
                 //do the update
-                $q = "UPDATE Users SET FirstName='$fname', LastName='$lname', Email='$e', Username='$uname' WHERE UserID=$id LIMIT 1";
+                $q = "UPDATE Users SET FirstName='$fname', LastName='$lname', Email='$e', Username='$uname', Password='$p' WHERE UserID=$id LIMIT 1";
                 $result = mysqli_query ($dbcon, $q);
                 if (mysqli_affected_rows($dbcon) == 1) {
                     //if updated correctly echo:
@@ -120,9 +127,13 @@
         <br>
         <p><label class="label" for="Username">Username:</label><input class="fl-left" type="text" name="Username" size="30" maxlength="50" value="' . $row[3] . '"></p>
         <br>
+        <p><label class="label" for="Password">Password:</label><input class="fl-left" type="password" name="Password" size="30" maxlength="50" value="' . $row[4] . '"></p>
+        <br>
+        <p><label class="label" for="Username">Confirm Password:</label><input class="fl-left" type="password" name="Password2" size="30" maxlength="50" value="' . $row[4] . '"></p>
+        <br>
         <p><input id="submit" type="submit" name="submit" value="Edit"></p>
         <br>
-        <input type="hidden" name="UserID" value="' . $id . '" />
+        <input type="hidden" name="id" value="' . $id . '" />
         </form>';
     } else {
         echo '<p class="error">This page has been accessed in error.</p>';

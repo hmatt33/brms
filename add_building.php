@@ -13,24 +13,8 @@
     
 <?php 
 require ('mysqli_connect.php'); 
-    //After clicking the Edit link in the builings page
-    //looks for a valid building ID, either through GET or POST:
-    if ( (isset($_GET['BuildingID'])) && (is_numeric($_GET['BuildingID'])) ) { //from buildings.php
-        $id = $_GET['BuildingID'];
-        echo '<h2>Add Building ID: ';
-        echo $id;
-        echo '</h2>';
-    } elseif ( (isset($_POST['BuildingID'])) && (is_numeric($_POST['BuildingID'])) ) {
-        $id = $_POST['BuildingID'];
-        echo '<h2>Add Building ID: ';
-        echo $id;
-        echo '</h2>';
-    } else { // If no valid ID, stop the script
-        echo '<p class="error">This page has been accessed in error.</p>';
-        include ('footer.php'); 
-        exit();
-    }
-    // Has the form been submitted?
+    //After clicking the add building link
+    //has the form been submitted?
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors = array();
         //look for the building name
@@ -84,6 +68,7 @@ require ('mysqli_connect.php');
                     //debug message
                     echo '<p>' . mysqli_error($dbcon) . '<br />Query: ' . $q . '</p>';
                 }
+                mysqli_close($dbcon);
             } else {
                 //building already exits
                 echo '<p class="error">building with this address and phone number already exists</p>';
@@ -97,34 +82,17 @@ require ('mysqli_connect.php');
             echo '</p><p>Please try again.</p>';
         } // End of if (empty($errors))section.
     } // End of the conditionals
-    // Select the user's information:
-    $q = "SELECT Name, Address, PhoneNumber, TotalRooms, TotalVacRooms FROM Buildings WHERE BuildingID=$id";
-    $result = mysqli_query ($dbcon, $q);
-    //if id is valid
-    if (mysqli_num_rows($result) == 1) {
-        //get the building info
-        $row = mysqli_fetch_array ($result, MYSQLI_NUM);
-        //create the add form:
-        echo '<form action="add_building.php" method="post">
-        <p><label class="label" for="Name">Building Name:</label><input class="fl-left" type="text" name="Name" size="30" maxlength="50" value="' . $row[0] . '"></p>
-        <br>
-        <p><label class="label" for="Address">Building Address:</label><input class="fl-left" type="text" name="Address" size="30" maxlength="50" value="' . $row[1] . '"></p>
-        <br>
-        <p><label class="label" for="PhoneNumber">Building Phone Number:</label><input class="fl-left" type="number" name="PhoneNumber" size="30" maxlength="50" value="' . $row[2] . '"></p>
-        <br>
-        <p><label class="label" for="TotalRooms">Total Number of Rooms:</label><input class="fl-left" type="number" name="TotalRooms" size="30" maxlength="50" value="' . $row[3] . '"></p>
-        <br>
-        <p><label class="label" for="TotalVacRooms">Number of Vacant Rooms:</label><input class="fl-left" type="number" name="TotalVacRooms" size="30" maxlength="50" value="' . $row[4] . '"></p>
-        <br>
-        <p><input id="submit" type="submit" name="submit" value="Add"></p>
-        <br>
-        <input type="hidden" name="BuildingID" value="' . $id . '" />
-        </form>';
-    } else {
-        echo '<p class="error">This page has been accessed in error.</p>';
-    }
-    mysqli_close($dbcon);
 ?>
+    <h2>Register</h2>
+    <form action="register-page.php" method="post">
+        <p><label class="label" for="Name">Building Name:</label><input id="fname" type="text" name="Name" size="30" maxlength="30" value="<?php if (isset($_POST['Name'])) echo $_POST['Name']; ?>"></p>
+        <p><label class="label" for="Address">Buiding Address:</label><input id="lname" type="text" name="Address" size="30" maxlength="40" value="<?php if (isset($_POST['Address'])) echo $_POST['Address']; ?>"></p>
+        <p><label class="label" for="PhoneNumber">Building Phone Number:</label><input id="PhoneNumber" type="number" name="Phone Number" size="30" maxlength="60" value="<?php if (isset($_POST['PhoneNumber'])) echo $_POST['PhoneNumber']; ?>" > </p>
+        <p><label class="label" for="TotalRooms">Total Number of Rooms:</label><input id="TotalRooms" type="number" name="TotalRooms" size="30" maxlength="60" value="<?php if (isset($_POST['TotalRooms'])) echo $_POST['TotalRooms']; ?>" > </p>
+        <p><label class="label" for="TotalVacRooms">Total Vacant Rooms:</label><input id="TotalVacRooms" type="number" name="TotalVacRooms" size="30" maxlength="60" value="<?php if (isset($_POST['TotalVacRooms'])) echo $_POST['TotalVacRooms']; ?>" > </p>
+        <p><input id="submit" type="submit" name="submit" value="Register"></p>
+    </form>
+    
     <footer>
 		<?php include('footer.php'); ?>
 	</footer>

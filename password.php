@@ -1,14 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Password</title>
+    <title>Change Password</title>
 	<meta charset="utf-8">
 </head>
 <body>
 <div id="container">
-
-</div>
-<body>
+    <?php include(header.php); ?>
+<div id="content">
 
 <?php
  //retrieve all the records from the users table.
@@ -25,7 +24,7 @@ if($confirmnew == $newpass){
     header("location: password.html");}
 
 
-$result = @mysqli_query ($dbcon, $sql); // Run the query.
+$result = mysqli_query ($dbcon, $sql); // Run the query.
 
 if ($result) { // If it ran OK, display the records.
     echo 'Password changed';
@@ -36,8 +35,8 @@ if ($result) { // If it ran OK, display the records.
         // Debugging message:
         echo '<p>' . mysqli_error($dbcon) . '<br><br>Query: ' . $q . '</p>';
     } // End of if ($result). Now display the total number of records/buildings.
-
 ?>
-
+</div>
+</div>
 </body>
 </html>

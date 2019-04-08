@@ -66,7 +66,7 @@
     mysqli_close($dbcon );
     echo '<p>&nbsp;</p>';
 
-    include ('footer.php');
+    include ('footer.html');
 ?>
 </div>
 </div>

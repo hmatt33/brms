@@ -112,7 +112,7 @@
         <a href="add_building.php">Add New Building</a>
     </div>
 	<footer>
-		<?php include('footer.php'); ?>
+		<?php include('footer.html'); ?>
 	</footer>
     </div>
     </div>

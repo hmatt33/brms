@@ -108,7 +108,7 @@ require ('mysqli_connect.php');
     </form>
     
     <footer>
-        <?php include('footer.php'); ?>
+        <?php include('footer.html'); ?>
     </footer>
 </div>
 </div>

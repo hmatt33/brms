@@ -26,13 +26,14 @@ CREATE TABLE `Buildings` (
   `BuildingID` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(100) NOT NULL,
   `Address` varchar(100) NOT NULL,
-  `PhoneNumber` int(11) NOT NULL,
+  `PhoneNumber` varchar(20) NOT NULL,
   `TotalRooms` int(11) NOT NULL,
   `TotalVacRooms` int(11) NOT NULL,
   `Res` varchar(20) NOT NULL DEFAULT 'Show Residents',
   `Edit` varchar(10) NOT NULL DEFAULT 'Edit',
   `Del` varchar(10) NOT NULL DEFAULT 'Delete',
-  PRIMARY KEY (`BuildingID`)
+  PRIMARY KEY (`BuildingID`),
+  UNIQUE KEY `Name` (`Name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -59,7 +60,7 @@ CREATE TABLE `Residents` (
   `FirstName` varchar(100) NOT NULL,
   `LastName` varchar(100) NOT NULL,
   `Email` varchar(100) NOT NULL,
-  `PhoneNumber` varchar(100) NOT NULL,
+  `PhoneNumber` varchar(20) NOT NULL,
   `ApartNum` varchar(100) NOT NULL,
   `ResType` varchar(100) NOT NULL,
   `BillingAddress` varchar(100) DEFAULT NULL,

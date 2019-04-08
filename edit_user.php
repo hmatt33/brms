@@ -36,7 +36,7 @@
         echo '</h2>';
     } else { // If no valid ID, stop the script
         echo '<p class="error">This page has been accessed in error.</p>';
-        include ('footer.php'); 
+        include ('footer.html'); 
         exit();
     }
     require ('mysqli_connect.php'); 
@@ -141,7 +141,7 @@
     mysqli_close($dbcon);
 ?>
     <footer>
-		<?php include('footer.php'); ?>
+		<?php include('footer.html'); ?>
 	</footer>
 </div>
 </div>

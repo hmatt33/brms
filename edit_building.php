@@ -59,7 +59,7 @@
             $rooms = mysqli_real_escape_string($dbcon, trim($_POST['TotalRooms']));
         }
         //look for number of vacant rooms in the building
-        if (empty($_POST['TotalVacRooms'])) {
+        if (empty($_POST['TotalVacRooms']) && $_POST['TotalVacRooms'] !=0) {
             $errors[] = 'You forgot to enter the number of vacant rooms';
         } else {
             $vac = mysqli_real_escape_string($dbcon, trim($_POST['TotalVacRooms']));
@@ -111,7 +111,7 @@
         <br>
         <p><label class="label" for="Address">Building Address:</label><input class="fl-left" type="text" name="Address" size="30" maxlength="50" value="' . $row[1] . '"></p>
         <br>
-        <p><label class="label" for="PhoneNumber">Building Phone Number:</label><input class="fl-left" type="number" name="PhoneNumber" size="30" maxlength="50" value="' . $row[2] . '"></p>
+        <p><label class="label" for="PhoneNumber">Building Phone Number:</label><input class="fl-left" type="text" name="PhoneNumber" size="30" maxlength="50" value="' . $row[2] . '"></p>
         <br>
         <p><label class="label" for="TotalRooms">Total Number of Rooms:</label><input class="fl-left" type="number" name="TotalRooms" size="30" maxlength="50" value="' . $row[3] . '"></p>
         <br>
@@ -127,7 +127,7 @@
     mysqli_close($dbcon);
 ?>
     <footer>
-		<?php include('footer.php'); ?>
+		<?php include('footer.html'); ?>
 	</footer>
 </div>
 </div>

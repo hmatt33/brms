@@ -17,11 +17,12 @@ require ('mysqli_connect.php');
     //has the form been submitted?
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors = array();
+
         //look for the building id the resident belongs to
         if (empty($_POST['BuildingID'])) {
             $errors[] = 'You forgot to enter the building id.';
         } else {
-            $buildid = mysqli_real_escape_string($dbcon, trim($_POST['BuildingID']));
+    	    $buildid = mysqli_real_escape_string($dbcon, trim($_POST['BuildingID']));
         }
         //look for the resident first name
         if (empty($_POST['FirstName'])) {
@@ -77,7 +78,7 @@ require ('mysqli_connect.php');
             if (mysqli_num_rows($result) == 0) {
                 //if no errors and no duplicate
                 //add the new resident
-                $q = "INSERT INTO Residents(BuildingID, FirstName, LastName, Email, PhoneNumber, ApartNum, ResType, BillingAddress, EmerContactInfo) VALUES('$buildid', '$name', '$last', '$email', '$phone', '$apart', '$res', '$bill', '$emer')";
+                $q = "INSERT INTO Residents(BuildingID, FirstName, LastName, Email, PhoneNumber, ApartNum, ResType, BillingAddress, EmerContactInfo, Edit, Del) VALUES('$buildid', '$name', '$last', '$email', '$phone', '$apart', '$res', '$bill', '$emer', 'Edit', 'Delete')";
                 $result = mysqli_query ($dbcon, $q);
                 if (mysqli_affected_rows($dbcon) == 1) {
                     //if added correctly echo:          
@@ -108,10 +109,10 @@ require ('mysqli_connect.php');
     <h2>Register</h2>
     <form action="add_resident.php" method="post">
         <p><label class="label" for="ResidentID">Resident ID:</label><input id="ResidentID" type="number" name="Name" size="30" maxlength="30" value="<?php if (isset($_POST['ResidentID'])) echo $_POST['ResidentID']; ?>"></p>
-        <p><label class="label" for="BuildID">Building ID:</label><input id="BuildID" type="number" name="Name" size="30" maxlength="30" value="<?php if (isset($_POST['BuildingID'])) echo $_POST['BuildingID']; ?>"></p>
+        <p><label class="label" for="BuildingID">Building ID:</label><input id="BuildingID" type="number" name="Name" size="30" maxlength="30" value="<?php if (isset($_POST['BuildingID'])) echo $_POST['BuildingID']; ?>"></p>
         <p><label class="label" for="FirstName">First Name:</label><input id="FirstName" type="text" name="FirstName" size="30" maxlength="30" value="<?php if (isset($_POST['FirstName'])) echo $_POST['FirstName']; ?>"></p>
         <p><label class="label" for="LastName">Last Name:</label><input id="LastName" type="text" name="LastName" size="30" maxlength="40" value="<?php if (isset($_POST['LastName'])) echo $_POST['LastName']; ?>"></p>
-        <p><label class="label" for="Email">Last Name:</label><input id="Email" type="text" name="Email" size="30" maxlength="40" value="<?php if (isset($_POST['Email'])) echo $_POST['Email']; ?>"></p>
+        <p><label class="label" for="Email">Email:</label><input id="Email" type="text" name="Email" size="30" maxlength="40" value="<?php if (isset($_POST['Email'])) echo $_POST['Email']; ?>"></p>
         <p><label class="label" for="PhoneNumber">Resident Phone Number:</label><input id="PhoneNumber" type="text" name="PhoneNumber" size="30" maxlength="60" value="<?php if (isset($_POST['PhoneNumber'])) echo $_POST['PhoneNumber']; ?>" > </p>
         <p><label class="label" for="ApartNum">Apartment Number:</label><input id="ApartNum" type="number" name="ApartNum" size="30" maxlength="60" value="<?php if (isset($_POST['ApartNum'])) echo $_POST['ApartNum']; ?>" > </p>
         <p><label class="label" for="ResType">Resident Type:</label><input id="ResType" type="text" name="ResType" size="30" maxlength="60" value="<?php if (isset($_POST['ResType'])) echo $_POST['ResType']; ?>" > </p>

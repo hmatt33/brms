@@ -32,6 +32,7 @@ The Team is just beginning on the implementation stage of the project. BRMS is a
 * adding new users is done
 * deleting users and buildings is done
 * ability for user to change password is done
+* displaying residents is done
     
 ## Planned Additions:
 * display residents

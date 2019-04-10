@@ -38,9 +38,11 @@ The Team is just beginning on the implementation stage of the project. BRMS is a
     
 ## Planned Additions:
 * CSS styling for site
+* Finish the FAQ page
 * ability to edit residents
 * ability to delete residents
 * displaying all residents no matter the building
+	* make this page be accessed from the header nav bar
 * allow the user to search for a resident within the all residents page
 * allow the user to sort the all residents page
 	* possibly bring this ability into the regular residents page

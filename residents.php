@@ -17,9 +17,11 @@
     //retrieve all the records from the buildings table.
     require ('mysqli_connect.php'); // Connect to the database.
 
-       if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { //from buildings.php
-        	$buildID = $_GET['id'];
-    	} 
+        //looks for the variable named id that was passed into the url by the previous page 
+        if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { //from buildings.php
+            //saves as variable so this page can use it
+        	$id = $_GET['id'];
+        }
 
     $pagerows = 4;
     // Has the total number of pagess already been calculated?
@@ -28,7 +30,7 @@
     } else {
         //use this block of code to calculate the number of pages
         //First, check for the total number of records
-        $q = "SELECT COUNT(ResidentID) FROM Residents WHERE BuildingID = $buildID";
+        $q = "SELECT COUNT(ResidentID) FROM Residents WHERE BuildingID = $id";
         $result = mysqli_query ($dbcon, $q);
         $row = mysqli_fetch_array ($result, MYSQLI_NUM);
         $records = $row[0];
@@ -48,21 +50,21 @@
         $start = 0;
     }
     // Make the query:
-    $q = "SELECT ResidentID, BuildingID, FirstName, LastName, Email, PhoneNumber, ResType, BillingAddress, EmerContactInfo, Edit, Del FROM Residents WHERE BuildingID=$buildID ORDER BY ResidentID ASC LIMIT $start, $pagerows";		
+    $q = "SELECT ResidentID, BuildingID, FirstName, LastName, Email, PhoneNumber, ResType, BillingAddress, EmerContactInfo, Edit, Del FROM Residents WHERE BuildingID=$id ORDER BY ResidentID ASC LIMIT $start, $pagerows";		
     $result = mysqli_query ($dbcon, $q); // Run the query.
     $buildings = mysqli_num_rows($result);
     if ($result) { // If it ran OK, display the records.
     // Table header.
     echo '<table cellspacing="15">
         <tr><td><b>Resident ID</b></td>
-	<td><b>Building ID</b></td>
+	   <td><b>Building ID</b></td>
         <td><b>First Name</b></td>
         <td><b>Last Name</b></td>
         <td><b>Email</b></td>
         <td><b>Phone Number</b></td>
         <td><b>Resident type</b></td>
         <td><b>Billing Address</b></td>
-	<td><b>Emergency Contact</b></td>
+	   <td><b>Emergency Contact</b></td>
         <td><b>Edit</b></td>
         <td><b>Delete</b></td>
         </tr>';
@@ -70,17 +72,17 @@
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $_SESSION['ResidentID'] = $row['ResidentID'];
         echo '<tr>
-	    <td>' . $row['ResidentID'] . '</td>
+	        <td>' . $row['ResidentID'] . '</td>
             <td>' . $row['BuildingID'] . '</td>
             <td>' . $row['FirstName'] . '</td>
             <td>' . $row['LastName'] . '</td>
             <td>' . $row['Email'] . '</td>
             <td>' . $row['PhoneNumber'] . '</td>
             <td>' . $row['ResType'] . '</td>
-	    <td>' . $row['BillingAddress'] . '</td>
-	    <td>' . $row['EmerContactInfo'] . '</td>
-            <td><a href="edit_building.php?id=' . $row['ResidentID'] . '">Edit</a></td>
-            <td><a href="delete_building.php?id=' . $row['ResidentID'] . '">Delete</a></td>
+	        <td>' . $row['BillingAddress'] . '</td>
+	        <td>' . $row['EmerContactInfo'] . '</td>
+            <td><a href="edit_resident.php?id=' . $row['ResidentID'] . '">Edit</a></td>
+            <td><a href="delete_resident.php?id=' . $row['ResidentID'] . '">Delete</a></td>
             </tr>';
         }
         echo '</table>'; // Close the table.
@@ -91,7 +93,7 @@
         // Debugging message:
         echo '<p>' . mysqli_error($dbcon) . '<br><br>Query: ' . $q . '</p>';
     } // End of if ($result). Now display the total number of residents
-    $q = "SELECT COUNT(ResidentID) FROM Residents WHERE BuildingID=$buildID";
+    $q = "SELECT COUNT(ResidentID) FROM Residents WHERE BuildingID=$id";
     $result = mysqli_query ($dbcon, $q);
     $row = mysqli_fetch_array ($result, MYSQLI_NUM);
     $residents = $row[0];
@@ -103,22 +105,26 @@
         $current_page = ($start/$pagerows) + 1;
         //If the page is not the first page then create a Previous link
         if ($current_page != 1) {
-        echo '<a href="buildings.php?s=' . ($start - $pagerows) . '&p=' . $pages . '">Previous</a> ';
+        echo '<a href="residents.php?s=' . ($start - $pagerows) . '&p=' . $pages . '&id=' . $id . '">Previous</a>';
         }
         //Create a Next link
         if ($current_page != $pages) {
-        echo '<a href="buildings.php?s=' . ($start + $pagerows) . '&p=' . $pages . '">Next</a> ';
+        echo '<a href="residents.php?s=' . ($start + $pagerows) . '&p=' . $pages . '&id=' . $id . '">Next</a> ';
         }
         echo '</p>';
     }
+        //creates link to add new resident
+        //id was passed from buildings page and holds the building id
+        //id now passed into the url to go to the add_resident page
+        //add resident page will now have access to it
+        echo '<br> <br> <br>';
+        echo '<div id="add"><a href="add_resident.php?id=' . $id . '">Add New Resident</a></div>'
+
 ?>
 </p> 
     <br>
     <br>
     <!--link to create new resident-->
-    <div id="add">
-        <a href="add_resident.php">Add New Resident</a>
-    </div>
 	<footer>
 		<?php include('footer.php'); ?>
 	</footer>

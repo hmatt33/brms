@@ -32,15 +32,21 @@ The Team is just beginning on the implementation stage of the project. BRMS is a
 * adding new users is done
 * deleting users and buildings is done
 * ability for user to change password is done
+* displaying residents is done
+	* displaying residens only displays the residents in the building selected
+* adding new residents is fully functional
     
 ## Planned Additions:
-* display residents
-    * select a building and see residents that live in that building
-    * add/edit/delete residents
-* email a resident
-* sort options for residents
-* search for residents
-* sort options for buildings
+* CSS styling for site
+* Finish the FAQ page
+* ability to edit residents
+* ability to delete residents
+* displaying all residents no matter the building
+	* make this page be accessed from the header nav bar
+* allow the user to search for a resident within the all residents page
+* allow the user to sort the all residents page
+	* possibly bring this ability into the regular residents page
+* allow the user to email a selected resident
 
 ### Acknowledgments/References/Sources
 

@@ -5,8 +5,8 @@
 	<meta charset="utf-8">
 </head>
 <body>
-<?php include('header.php'); ?>
 <div class="col-sm-12" id="container">
+    <?php include("header.php") ?>
 <div id="content">
         
 <!--Start of buildings page-->
@@ -17,7 +17,7 @@
     //retrieve all the records from the buildings table.
     require ('mysqli_connect.php'); // Connect to the database.
     
-    $pagerows = 10;
+    $pagerows = 20;
     // Has the total number of pagess already been calculated?
     if (isset($_GET['p']) && is_numeric ($_GET['p'])) {//already been calculated
         $pages=$_GET['p'];
@@ -60,8 +60,8 @@
         <th scope="col"><b>Edit</b></th>
         <th scope="col"><b>Delete</b></th>
         </tr>
-	</thead>
-	<tbody>';
+	   </thead>
+	   <tbody>';
     // Fetch and print all the records:
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $_SESSION['BuildingID'] = $row['BuildingID'];
@@ -97,11 +97,11 @@
         $current_page = ($start/$pagerows) + 1;
         //If the page is not the first page then create a Previous link
         if ($current_page != 1) {
-        echo '<a href="buildings.php?s=' . ($start - $pagerows) . '&p=' . $pages . '">Previous</a> ';
+        echo '<a href="buildings.php?s=' . ($start - $pagerows) . '&p=' . $pages . '" class="btn btn-info">Previous</a> ';
         }
         //Create a Next link
         if ($current_page != $pages) {
-        echo '<a href="buildings.php?s=' . ($start + $pagerows) . '&p=' . $pages . '">Next</a> ';
+        echo '<a href="buildings.php?s=' . ($start + $pagerows) . '&p=' . $pages . '" class="btn btn-info">Next</a> ';
         }
         echo '</p>';
     }

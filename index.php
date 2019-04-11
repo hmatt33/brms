@@ -51,6 +51,7 @@
 					// Start the session, fetch the record and insert the three values in an array
 					session_start();
 					$_SESSION = mysqli_fetch_array ($result, MYSQLI_ASSOC);
+					$_SESSION['UserLevel'] = (int) $_SESSION['UserLevel'];
 					//after logging in person is taken to buildings page
 					header('Location: buildings.php');
 					exit(); // Cancels the rest of the script.

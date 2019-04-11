@@ -6,7 +6,7 @@
 </head> 
 <body>
 <div id="container">
-<?php include("header.php"); ?>
+    <?php include("header.php"); ?>
 <div id="content">
 <!-- Start of add residents page-->
         <h2>Add a resident</h2>
@@ -124,7 +124,6 @@ require ('mysqli_connect.php');
         <input type="hidden" name="id" value="<?php echo $id ?>"/>
 
         <p><input id="submit" type="submit" name="submit" value="Register"></p>
-	<p><input type="hidden" name="id" value=" <?php echo $id; ?> " /></p>
     </form>
     
     <footer>

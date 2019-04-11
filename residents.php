@@ -23,7 +23,7 @@
         	$id = $_GET['id'];
         }
                  
-    $pagerows = 4;
+    $pagerows = 30;
     // Has the total number of pagess already been calculated?
     if (isset($_GET['p']) && is_numeric ($_GET['p'])) {//already been calculated
         $pages=$_GET['p'];
@@ -120,17 +120,11 @@
         //id now passed into the url to go to the add_resident page
         //add resident page will now have access to it
         echo '<br> <br> <br>';
-        echo '<div id="add"><a href="add_resident.php?id=' . $id . '">Add New Resident</a></div>'
+        echo '<div class="btn btn-info" id="add"><a href="add_resident.php?id=' . $id . '">Add New Resident</a></div>'
 
 ?>
 </p> 
     <br>
-    <br>
-    <!--link to create new resident-->
-    <div id="add">
-       <?php echo '<a class="btn btn-info" href="add_resident.php?id=' . $id . '">Add New Resident</a> ';
-	     echo '<a class="btn btn-info" href="buildings.php?">Back to Buildings</a> ' ?>
-    </div>
 	<footer>
 		<?php include('footer.php'); ?>
 	</footer>

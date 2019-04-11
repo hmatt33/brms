@@ -5,19 +5,19 @@
 	<meta charset="utf-8">
 </head>
 <body>
-<div id="container">
 <?php include('header.php'); ?>
+<div class="col-sm-12" id="container">
 <div id="content">
         
 <!--Start of buildings page-->
 <h2>All Buildings Within the System</h2>
 
-<p>
+<div>
 <?php 
     //retrieve all the records from the buildings table.
     require ('mysqli_connect.php'); // Connect to the database.
     
-    $pagerows = 4;
+    $pagerows = 10;
     // Has the total number of pagess already been calculated?
     if (isset($_GET['p']) && is_numeric ($_GET['p'])) {//already been calculated
         $pages=$_GET['p'];
@@ -49,17 +49,19 @@
     $buildings = mysqli_num_rows($result);
     if ($result) { // If it ran OK, display the records.
     // Table header.
-    echo '<table cellspacing="15">
-        <tr><td><b>Building ID</b></td>
-        <td><b>Building Name</b></td>
-        <td><b>Address</b></td>
-        <td><b>Phone Number</b></td>
-        <td><b>Total Rooms</b></td>
-        <td><b>Total Vacancies</b></td>
-        <td><b>Residents</b></td>
-        <td><b>Edit</b></td>
-        <td><b>Delete</b></td>
-        </tr>';
+    echo '<table class="table table-striped" cellspacing="15">
+        <thead><tr><th scope="col"><b>Building ID</b></th>
+        <th scope="col"><b>Building Name</b></th>
+        <th scope="col"><b>Address</b></th>
+        <th scope="col"><b>Phone Number</b></th>
+        <th scope="col"><b>Total Rooms</b></th>
+        <th scope="col"><b>Total Vacancies</b></th>
+        <th scope="col"><b>Residents</b></th>
+        <th scope="col"><b>Edit</b></th>
+        <th scope="col"><b>Delete</b></th>
+        </tr>
+	</thead>
+	<tbody>';
     // Fetch and print all the records:
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $_SESSION['BuildingID'] = $row['BuildingID'];
@@ -70,12 +72,12 @@
             <td>' . $row['PhoneNumber'] . '</td>
             <td>' . $row['TotalRooms'] . '</td>
             <td>' . $row['TotalVacRooms'] . '</td>
-            <td><a href="residents.php?id=' . $row['BuildingID'] . '">Show Residents</a></td>
-            <td><a href="edit_building.php?id=' . $row['BuildingID'] . '">Edit</a></td>
-            <td><a href="delete_building.php?id=' . $row['BuildingID'] . '">Delete</a></td>
+            <td><a href="residents.php?id=' . $row['BuildingID'] . '" class="btn btn-primary">Show Residents</a></td>
+            <td><a href="edit_building.php?id=' . $row['BuildingID'] . '" class="btn btn-primary">Edit</a></td>
+            <td><a href="delete_building.php?id=' . $row['BuildingID'] . '" class="btn btn-primary">Delete</a></td>
             </tr>';
         }
-        echo '</table>'; // Close the table.
+        echo '</tbody></table>'; // Close the table.
         mysqli_free_result ($result); // Free up the resources.	
     } else { // If it did not run OK.
         // Public message:
@@ -104,17 +106,19 @@
         echo '</p>';
     }
 ?>
-</p> 
+</div> 
     <br>
     <br>
     <!--link to create new building-->
     <div id="add">
-        <a href="add_building.php">Add New Building</a>
+        <a href="add_building.php" class="btn btn-info">Add New Building</a>
     </div>
-	<footer>
+    </div>
+    </div>
+    <div>
+	 <footer>
 		<?php include('footer.html'); ?>
 	</footer>
-    </div>
     </div>
 </body>
 </html>

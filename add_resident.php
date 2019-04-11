@@ -10,7 +10,6 @@
 <div id="content">
 <!-- Start of add residents page-->
         <h2>Add a resident</h2>
-
 <?php 
 
 if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { //from residents
@@ -26,18 +25,12 @@ if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { //from residents
         exit();
     }
 
-require ('mysqli_connect.php'); 
+require ('mysqli_connect.php');
     //After clicking the add resident link
     //has the form been submitted?
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors = array();
-
-        //look for the building id the resident belongs to
-        //if (empty($_POST['BuildingID'])) {
-            //$errors[] = 'You forgot to enter the building id.';
-        //} else {
-    	    //$buildid = mysqli_real_escape_string($dbcon, trim($_POST['BuildingID']));
-        //}
+      
         //look for the resident first name
         if (empty($_POST['FirstName'])) {
             $errors[] = 'You forgot to enter the resident name.';
@@ -131,6 +124,7 @@ require ('mysqli_connect.php');
         <input type="hidden" name="id" value="<?php echo $id ?>"/>
 
         <p><input id="submit" type="submit" name="submit" value="Register"></p>
+	<p><input type="hidden" name="id" value=" <?php echo $id; ?> " /></p>
     </form>
     
     <footer>

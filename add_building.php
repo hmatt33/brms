@@ -6,7 +6,7 @@
 </head> 
 <body>
 <div id="container">
-<?php include("header.php"); ?>
+    <?php include("header.php"); ?>
 <div id="content">
 <!-- Start of add buildings page-->
         <h2>Add a building</h2>

@@ -10,41 +10,38 @@
 <div id="content">
 <!-- Start of add residents page-->
         <h2>Add a resident</h2>
+<?php 
 
-<?php  
-
-    if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { //from buildings.php
+if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { //from residents
         $id = $_GET['id'];
-        echo '<h2>Edit Building ID: ';
+        echo '<h2>Add Resident to Building ID: ';
         echo $id;
         echo '</h2>';
     } elseif ( (isset($_POST['id'])) && (is_numeric($_POST['id'])) ) {
         $id = $_POST['id'];
-        echo '<h2>Edit Building ID: ';
-        echo $id;
-        echo '</h2>';
+    } else { // If no valid ID, stop the script
+        echo '<p class="error">This page has been accessed in error.</p>';
+        include ('footer.php'); 
+        exit();
     }
-	
 
-    require ('mysqli_connect.php'); 
+require ('mysqli_connect.php');
     //After clicking the add resident link
     //has the form been submitted?
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors = array();
-
-        //look for the building id the resident belongs to
-
+      
         //look for the resident first name
         if (empty($_POST['FirstName'])) {
             $errors[] = 'You forgot to enter the resident name.';
         } else {
-            $name = mysqli_real_escape_string($dbcon, trim($_POST['FirstName']));
+            $fname = mysqli_real_escape_string($dbcon, trim($_POST['FirstName']));
         }
         //look for the resident lastname
         if (empty($_POST['LastName'])) {
             $errors[] = 'You forgot to enter the resident address.';
         } else {
-            $last = mysqli_real_escape_string($dbcon, trim($_POST['LastName']));
+            $lname = mysqli_real_escape_string($dbcon, trim($_POST['LastName']));
         }
          if (empty($_POST['Email'])) {
             $errors[] = 'You forgot to enter the resident email.';
@@ -81,31 +78,21 @@
         }
         //if there are no errors
         if (empty($errors)) {
-            //check to make sure it isn't a duplicate
-            //check the name, address and phone number
-            $q = "SELECT ResidentID FROM Residents WHERE FirstName='$name' AND LastName='$last' AND Email='$email' AND PhoneNumber='$phone' AND BuildingID=$id ";
-            $result = mysqli_query($dbcon, $q);
-            if (mysqli_num_rows($result) == 0) {
-                //if no errors and no duplicate
-                //add the new resident
-                $q = "INSERT INTO Residents (BuildingID, FirstName, LastName, Email, PhoneNumber, ApartNum, ResType, BillingAddress, EmerContactInfo, Edit, Del) VALUES ($id, '$name', '$last', '$email', '$phone', '$apart', '$res', '$bill', '$emer', 'Edit', 'Delete')";
-                $result = mysqli_query ($dbcon, $q);
-                if (mysqli_affected_rows($dbcon) == 1) {
-                    //if added correctly echo:          
-                    header("Location: residents.php?id=" . $id);
-                    echo '<h3>resident has been added.</h3>';
-                } else {
-                    //if add building failed
-                    //error message
-                    echo '<p class="error">The resident could not be added due to a system error. We apologize for the inconvenience.</p>';
-                    //debug message
-                    echo '<p>' . mysqli_error($dbcon) . '<br />Query: ' . $q . '</p>';
-                }
-                mysqli_close($dbcon);
+            //add the new resident
+            $q = "INSERT INTO Residents(BuildingID, FirstName, LastName, Email, PhoneNumber, ApartNum, ResType, BillingAddress, EmerContactInfo, Edit, Del) VALUES('$id', '$fname', '$lname', '$email', '$phone', '$apart', '$res', '$bill', '$emer', 'Edit', 'Delete')";
+            $result = mysqli_query ($dbcon, $q);
+            if (mysqli_affected_rows($dbcon) == 1) {
+                //if added correctly echo:          
+                header("Location: residents.php?id=$id");
+                echo '<h3>resident has been added.</h3>';
             } else {
-                //resident already exists
-                echo '<p class="error">resident with this address and phone number already exists</p>';
+                //if add building failed
+                //error message
+                echo '<p class="error">The resident could not be added due to a system error. We apologize for the inconvenience.</p>';
+                //debug message
+                echo '<p>' . mysqli_error($dbcon) . '<br />Query: ' . $q . '</p>';
             }
+            mysqli_close($dbcon);
         } else { // Display the errors.
             echo '<p class="error">The following error(s) occurred:<br />';
             //echo each error in the error array
@@ -117,15 +104,25 @@
     } // End of the conditionals
 ?>
     <h2>Register</h2>
-    <form action="add_resident.php?id=<?php echo $id; ?>" method="post">
+    <form action="add_resident.php" method="post">
         <p><label class="label" for="FirstName">First Name:</label><input id="FirstName" type="text" name="FirstName" size="30" maxlength="30" value="<?php if (isset($_POST['FirstName'])) echo $_POST['FirstName']; ?>"></p>
+
         <p><label class="label" for="LastName">Last Name:</label><input id="LastName" type="text" name="LastName" size="30" maxlength="40" value="<?php if (isset($_POST['LastName'])) echo $_POST['LastName']; ?>"></p>
+
         <p><label class="label" for="Email">Email:</label><input id="Email" type="text" name="Email" size="30" maxlength="40" value="<?php if (isset($_POST['Email'])) echo $_POST['Email']; ?>"></p>
+
         <p><label class="label" for="PhoneNumber">Resident Phone Number:</label><input id="PhoneNumber" type="text" name="PhoneNumber" size="30" maxlength="60" value="<?php if (isset($_POST['PhoneNumber'])) echo $_POST['PhoneNumber']; ?>" > </p>
+
         <p><label class="label" for="ApartNum">Apartment Number:</label><input id="ApartNum" type="number" name="ApartNum" size="30" maxlength="60" value="<?php if (isset($_POST['ApartNum'])) echo $_POST['ApartNum']; ?>" > </p>
+
         <p><label class="label" for="ResType">Resident Type:</label><input id="ResType" type="text" name="ResType" size="30" maxlength="60" value="<?php if (isset($_POST['ResType'])) echo $_POST['ResType']; ?>" > </p>
+
         <p><label class="label" for="BillingAddress">Billing Address:</label><input id="BillingAddress" type="text" name="BillingAddress" size="30" maxlength="60" value="<?php if (isset($_POST['BillingAddress'])) echo $_POST['BillingAddress']; ?>" > </p>
+
         <p><label class="label" for="EmerContactInfo">Emergency Contact Info:</label><input id="EmerContactInfo" type="text" name="EmerContactInfo" size="30" maxlength="60" value="<?php if (isset($_POST['EmerContactInfo'])) echo $_POST['EmerContactInfo']; ?>" > </p>
+
+        <input type="hidden" name="id" value="<?php echo $id ?>"/>
+
         <p><input id="submit" type="submit" name="submit" value="Register"></p>
 	<p><input type="hidden" name="id" value=" <?php echo $id; ?> " /></p>
     </form>

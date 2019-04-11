@@ -1,16 +1,15 @@
 <!doctype html>
 <html lang=en>
 <head>
-    <title>Edit a Building</title>
+    <title>Edit a Resident</title>
     <meta charset=utf-8>
-</head>
-
+</head> 
 <body>
 <div id="container">
 <?php include("header.php"); ?>
 <div id="content">
 <!-- Start of edit residents page-->
-        <h2>Edit a resident</h2>
+  <h2>Edit a resident</h2>
     
 <?php 
     //After clicking the Edit link in the builings page
@@ -106,6 +105,7 @@
             } else {
                 //building already exits
                 echo '<p class="error">Resident with this information already exits</p>';
+
             }
         } else { // Display the errors.
             echo '<p class="error">The following error(s) occurred:<br />';

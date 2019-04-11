@@ -141,9 +141,8 @@
         <br>
 	<p><label class="label" for="EmerContactInfo">Emergency Contact Information:</label><input class="fl-left" type="text" name="EmerContactInfo" size="30" maxlength="50" value="' . $row[7] . '"></p>
         <br>
-        <p><input id="submit" type="submit" name="submit" value="Edit"></p>
-        <br>
         <input type="hidden" name="id" value="' . $id . '" />
+        <p><input id="submit" type="submit" name="submit" value="Edit"></p>
         </form>';
     } else {
         echo '<p class="error">This page has been accessed in error.</p>';

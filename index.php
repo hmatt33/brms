@@ -4,17 +4,21 @@
 <head>
 	<title>BRMS Login</title>
 	<meta charset=utf-8>
-	<link rel="stylesheet" type="text/css" href="site_style.css">
+		    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
 <body>
-	<div id='container'>
+	<div id='container' class="container mx-sm-3 mb-2">
 	<!--Start of index (index of site is login)-->
 	<div id='content'>
-		<h1>Welcome to the Building and Resident Management System</h1>
-		<h2>Warning: Only authoriized users are allowed to access this system</h2>
-		<h2>If you do not yet have a username and password, please contact your system admin</h2>
-
+	<div class="jumbotron bg-dark rounded">
+		<h1 class="display-4 text-center text-light">Welcome to the Building and Resident Management System</h1>
+		<p class="lead text-center text-light">*If you do not yet have a username and password, please contact your system admin</p>
+	</div>
+	<div class="alert alert-warning">
+	<p class="text-center"> WARNING: Only authorized users are allowed to access this system. </p>
+	</div>
 		<?php 
 		//This section processes submissions from the login form.
 		//Check if the form has been submitted:

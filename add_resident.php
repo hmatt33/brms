@@ -11,19 +11,29 @@
 <!-- Start of add residents page-->
         <h2>Add a resident</h2>
 
-<?php 
-require ('mysqli_connect.php'); 
+<?php  
+
+    if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { //from buildings.php
+        $id = $_GET['id'];
+        echo '<h2>Edit Building ID: ';
+        echo $id;
+        echo '</h2>';
+    } elseif ( (isset($_POST['id'])) && (is_numeric($_POST['id'])) ) {
+        $id = $_POST['id'];
+        echo '<h2>Edit Building ID: ';
+        echo $id;
+        echo '</h2>';
+    }
+	
+
+    require ('mysqli_connect.php'); 
     //After clicking the add resident link
     //has the form been submitted?
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors = array();
 
         //look for the building id the resident belongs to
-        if (empty($_POST['BuildingID'])) {
-            $errors[] = 'You forgot to enter the building id.';
-        } else {
-    	    $buildid = mysqli_real_escape_string($dbcon, trim($_POST['BuildingID']));
-        }
+
         //look for the resident first name
         if (empty($_POST['FirstName'])) {
             $errors[] = 'You forgot to enter the resident name.';
@@ -73,16 +83,16 @@ require ('mysqli_connect.php');
         if (empty($errors)) {
             //check to make sure it isn't a duplicate
             //check the name, address and phone number
-            $q = "SELECT ResidentID FROM Residents WHERE BuildingID=$buildid";
+            $q = "SELECT ResidentID FROM Residents WHERE FirstName='$name' AND LastName='$last' AND Email='$email' AND PhoneNumber='$phone' AND BuildingID=$id ";
             $result = mysqli_query($dbcon, $q);
             if (mysqli_num_rows($result) == 0) {
                 //if no errors and no duplicate
                 //add the new resident
-                $q = "INSERT INTO Residents(BuildingID, FirstName, LastName, Email, PhoneNumber, ApartNum, ResType, BillingAddress, EmerContactInfo, Edit, Del) VALUES('$buildid', '$name', '$last', '$email', '$phone', '$apart', '$res', '$bill', '$emer', 'Edit', 'Delete')";
+                $q = "INSERT INTO Residents (BuildingID, FirstName, LastName, Email, PhoneNumber, ApartNum, ResType, BillingAddress, EmerContactInfo, Edit, Del) VALUES ($id, '$name', '$last', '$email', '$phone', '$apart', '$res', '$bill', '$emer', 'Edit', 'Delete')";
                 $result = mysqli_query ($dbcon, $q);
                 if (mysqli_affected_rows($dbcon) == 1) {
                     //if added correctly echo:          
-                    header("Location: residents.php");
+                    header("Location: residents.php?id=" . $id);
                     echo '<h3>resident has been added.</h3>';
                 } else {
                     //if add building failed
@@ -107,9 +117,7 @@ require ('mysqli_connect.php');
     } // End of the conditionals
 ?>
     <h2>Register</h2>
-    <form action="add_resident.php" method="post">
-        <p><label class="label" for="ResidentID">Resident ID:</label><input id="ResidentID" type="number" name="Name" size="30" maxlength="30" value="<?php if (isset($_POST['ResidentID'])) echo $_POST['ResidentID']; ?>"></p>
-        <p><label class="label" for="BuildingID">Building ID:</label><input id="BuildingID" type="number" name="Name" size="30" maxlength="30" value="<?php if (isset($_POST['BuildingID'])) echo $_POST['BuildingID']; ?>"></p>
+    <form action="add_resident.php?id=<?php echo $id; ?>" method="post">
         <p><label class="label" for="FirstName">First Name:</label><input id="FirstName" type="text" name="FirstName" size="30" maxlength="30" value="<?php if (isset($_POST['FirstName'])) echo $_POST['FirstName']; ?>"></p>
         <p><label class="label" for="LastName">Last Name:</label><input id="LastName" type="text" name="LastName" size="30" maxlength="40" value="<?php if (isset($_POST['LastName'])) echo $_POST['LastName']; ?>"></p>
         <p><label class="label" for="Email">Email:</label><input id="Email" type="text" name="Email" size="30" maxlength="40" value="<?php if (isset($_POST['Email'])) echo $_POST['Email']; ?>"></p>
@@ -119,6 +127,7 @@ require ('mysqli_connect.php');
         <p><label class="label" for="BillingAddress">Billing Address:</label><input id="BillingAddress" type="text" name="BillingAddress" size="30" maxlength="60" value="<?php if (isset($_POST['BillingAddress'])) echo $_POST['BillingAddress']; ?>" > </p>
         <p><label class="label" for="EmerContactInfo">Emergency Contact Info:</label><input id="EmerContactInfo" type="text" name="EmerContactInfo" size="30" maxlength="60" value="<?php if (isset($_POST['EmerContactInfo'])) echo $_POST['EmerContactInfo']; ?>" > </p>
         <p><input id="submit" type="submit" name="submit" value="Register"></p>
+	<p><input type="hidden" name="id" value=" <?php echo $id; ?> " /></p>
     </form>
     
     <footer>

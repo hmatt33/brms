@@ -16,8 +16,8 @@
 	<meta charset="utf-8">
 </head>
 <body>
-<div id="container">
-<?php include('header.php'); ?>
+<div class="col-sm-12" id="container">
+    <?php include('header.php'); ?>
 <div id="content">
         
 <!--Start of buildings page-->
@@ -28,7 +28,7 @@
     //retrieve all the records from the users table.
     require ('mysqli_connect.php'); // Connect to the database.
     
-    $pagerows = 4;
+    $pagerows = 20;
     // Has the total number of pagess already been calculated?
     if (isset($_GET['p']) && is_numeric ($_GET['p'])) { //already been calculated
         $pages=$_GET['p'];
@@ -60,15 +60,17 @@
     $buildings = mysqli_num_rows($result);
     if ($result) { // If it ran OK, display the records.
     // Table header.
-    echo '<table cellspacing="15">
-        <tr><td><b>User ID</b></td>
-        <td><b>First Name</b></td>
-        <td><b>Last Name</b></td>
-        <td><b>Email</b></td>
-        <td><b>Username</b></td>
-        <td><b>Edit</b></td>
-        <td><b>Delete</b></td>
-        </tr>';
+    echo '<table class="table table-striped" cellspacing="15">
+        <thead>
+        <tr><th scope="col"><b>User ID</b></th>
+        <th scope="col"><b>First Name</b></th>
+        <th scope="col"><b>Last Name</b></th>
+        <th scope="col"><b>Email</b></th>
+        <th scope="col"><b>Username</b></th>
+        <th scope="col"><b>Edit</b></th>
+        <th scope="col"><b>Delete</b></th></tr>
+        </thead>
+        <tbody>';
     // Fetch and print all the records:
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $_SESSION['UserID'] = $row['UserID'];
@@ -82,7 +84,7 @@
             <td><a href="delete_user.php?id=' . $row['UserID'] . '">Delete</a></td>
             </tr>';
         }
-        echo '</table>'; // Close the table.
+        echo '</tbody> </table>'; // Close the table.
         mysqli_free_result ($result); // Free up the resources.	
     } else { // If it did not run OK.
         // Public message:
@@ -102,11 +104,11 @@
     $current_page = ($start/$pagerows) + 1;
         //If the page is not the first page then create a Previous link
         if ($current_page != 1) {
-        echo '<a href="admin_page.php?s=' . ($start - $pagerows) . '&p=' . $pages . '">Previous</a> ';
+        echo '<a href="admin_page.php?s=' . ($start - $pagerows) . '&p=' . $pages . '" class="btn btn-info">Previous</a> ';
         }
         //Create a Next link
         if ($current_page != $pages) {
-        echo '<a href="admin_page.php?s=' . ($start + $pagerows) . '&p=' . $pages . '">Next</a> ';
+        echo '<a href="admin_page.php?s=' . ($start + $pagerows) . '&p=' . $pages . '" class="btn btn-info">Next</a> ';
         }
         echo '</p>';
     }
@@ -117,7 +119,7 @@
     <br>
     <!--link to create new building-->
     <div id="add">
-        <a href="register_user.php">Add new user</a>
+        <a href="register_user.php" class="btn btn-info">Add new user</a>
     </div>
 	<footer>
 		<?php include('footer.php'); ?>

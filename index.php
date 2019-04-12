@@ -42,15 +42,15 @@
 			if ($user && $pass){
 			//if no problems
 				// Retrieve the user id, first name, and last name for user with that email and password
-				$sql = "SELECT UserID, FirstName, LastName, UserLevel FROM Users WHERE (Username='$user' AND Password='$pass')";
+				$sql = "SELECT UserID, FirstName, LastName, Email, UserLevel FROM Users WHERE (Username='$user' AND Password='$pass')";
 				//run the query and assign it to the variable $result
 				$result = mysqli_query ($dbcon, $sql);
 				//Count the number of rows that match the email/password combination
 				if (mysqli_num_rows($result) == 1) {
 				//The user input matched the database record
-					// Start the session, fetch the record and insert the three values in an array
+					// Start the session, fetch the record and insert the 5 values in an array
 					session_start();
-					$_SESSION = mysqli_fetch_array ($result, MYSQLI_ASSOC);
+					$_SESSION = mysqli_fetch_array($result, MYSQLI_ASSOC);
 					$_SESSION['UserLevel'] = (int) $_SESSION['UserLevel'];
 					//after logging in person is taken to buildings page
 					header('Location: buildings.php');

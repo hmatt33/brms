@@ -2,7 +2,7 @@
 <html lang=en>
 <head>
     <title>Add a Building</title>
-    <meta charset=utf-8>
+    <meta charset="utf-8">
 </head> 
 <body>
 <div id="container">
@@ -52,7 +52,6 @@ require ('mysqli_connect.php');
             //check to make sure it isn't a duplicate
             //check the name, address and phone number
             $q = "SELECT BuildingID FROM Buildings WHERE Address='$addr' AND PhoneNumber='$phone' AND BuildingID != $id";
-echo $id;
             $result = mysqli_query($dbcon, $q);
             if (mysqli_num_rows($result) == 0) {
                 //if no errors and no duplicate

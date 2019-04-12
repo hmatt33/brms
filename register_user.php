@@ -100,7 +100,7 @@ require ('mysqli_connect.php');
     <form action="register_user.php" method="post">
         <p><label class="label" for="FirstName">First Name:</label><input id="FirstName" type="text" name="FirstName" size="30" maxlength="30" value="<?php if (isset($_POST['FirstName'])) echo $_POST['FirstName']; ?>"></p>
         <p><label class="label" for="LastName">Last Name:</label><input id="LastName" type="text" name="LastName" size="30" maxlength="40" value="<?php if (isset($_POST['LastName'])) echo $_POST['LastName']; ?>"></p>
-        <p><label class="label" for="Email">Email:</label><input id="Email" type="text" name="Email" size="30" maxlength="60" value="<?php if (isset($_POST['Email'])) echo $_POST['Email']; ?>" > </p>
+        <p><label class="label" for="Email">Email:</label><input id="Email" type="email" name="Email" size="30" maxlength="60" value="<?php if (isset($_POST['Email'])) echo $_POST['Email']; ?>" > </p>
         <p><label class="label" for="Username">Username:</label><input id="Username" type="text" name="Username" size="30" maxlength="60" value="<?php if (isset($_POST['Username'])) echo $_POST['Username']; ?>" > </p>
         <p><label class="label" for="Password">Password:</label><input id="Password" type="password" name="Password" size="30" maxlength="60" value="<?php if (isset($_POST['Password'])) echo $_POST['Password']; ?>" > </p>
         <p><label class="label" for="Password2">Confirm Password:</label><input id="Password2" type="password" name="Password2" size="30" maxlength="60" value="<?php if (isset($_POST['Password2'])) echo $_POST['Password2']; ?>" > </p>

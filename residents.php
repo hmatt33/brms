@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 </head>
 <body>
-<div id="container" class="col-sm-12"">
+<div id="container" class="col-sm-12">
 <?php include('header.php'); ?>
 <div id="content">
         
@@ -22,6 +22,7 @@
             //saves as variable so this page can use it
         	$id = $_GET['id'];
         }
+
                  
     $pagerows = 30;
     // Has the total number of pagess already been calculated?
@@ -56,24 +57,28 @@
     if ($result) { // If it ran OK, display the records.
     // Table header.
     echo '<table class="table table-striped" cellspacing="15">
-        <thead><tr><th scope="col"><b>Resident ID</b></th>
+        <thead><tr>
+        <th scope="col"><b>Select</b></th>
+        <th scope="col"><b>Resident ID</b></th>
         <th scope="col"><b>Building ID</b></th>
         <th scope="col"><b>First Name</b></th>
         <th scope="col"><b>Last Name</b></th>
         <th scope="col"><b>Email</b></th>
         <th scope="col"><b>Phone Number</b></th>
         <th scope="col"><b>Resident Type</b></th>
-	<th scope="col"><b>Billing Address</b></th>
-	<th scope="col"><b>Emergency Contact Information</b></th>
+	    <th scope="col"><b>Billing Address</b></th>
+	    <th scope="col"><b>Emergency Contact Information</b></th>
         <th scope="col"><b>Edit</b></th>
         <th scope="col"><b>Delete</b></th>
         </tr>
 	</thead>
+    <form action="email_multiple.php" method="post">
 	<tbody>';
     // Fetch and print all the records:
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $_SESSION['ResidentID'] = $row['ResidentID'];
         echo '<tr>
+            <td><input type="checkbox" value="' . $row['Email'] . '" name="Emails[]"></td>
 	        <td>' . $row['ResidentID'] . '</td>
             <td>' . $row['BuildingID'] . '</td>
             <td>' . $row['FirstName'] . '</td>
@@ -81,13 +86,16 @@
             <td>' . $row['Email'] . '</td>
             <td>' . $row['PhoneNumber'] . '</td>
             <td>' . $row['ResType'] . '</td>
-	    <td>' . $row['BillingAddress'] . '</td>
-	    <td>' . $row['EmerContactInfo'] . '</td>
+	        <td>' . $row['BillingAddress'] . '</td>
+	        <td>' . $row['EmerContactInfo'] . '</td>
             <td><a class="btn btn-primary" href="edit_resident.php?id=' . $row['ResidentID'] . '">Edit</a></td>
             <td><a class="btn btn-primary" href="delete_resident.php?id=' . $row['ResidentID'] . '">Delete</a></td>
             </tr>';
         }
-        echo '</tbody></table>'; // Close the table.
+        echo '</tbody>';
+        echo '</table>'; // Close the table.
+        echo '<input type="submit" name="emailSubmit" value="Email Selected Residents" />';
+        echo '</form>'; //checkbox form closed
         mysqli_free_result ($result); // Free up the resources.	
     } else { // If it did not run OK.
         // Public message:

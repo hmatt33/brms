@@ -35,6 +35,10 @@ The Team is just beginning on the implementation stage of the project. BRMS is a
 * displaying residents is done
 	* displaying residens only displays the residents in the building selected
 * adding new residents is fully functional
+* editing and deleting residents fully functional
+* added more session data to login
+* added checkboxes to residents table so user can select multiple residents to email
+* code to email multiple residents mostly finished but not fully tested
     
 ## Planned Additions:
 * CSS styling for site
@@ -47,6 +51,7 @@ The Team is just beginning on the implementation stage of the project. BRMS is a
 * allow the user to sort the all residents page
 	* possibly bring this ability into the regular residents page
 * allow the user to email a selected resident
+* set up smtp in order to fully test if sending emails works
 
 ### Acknowledgments/References/Sources
 

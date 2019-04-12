@@ -109,7 +109,7 @@ require ('mysqli_connect.php');
 
         <p><label class="label" for="LastName">Last Name:</label><input id="LastName" type="text" name="LastName" size="30" maxlength="40" value="<?php if (isset($_POST['LastName'])) echo $_POST['LastName']; ?>"></p>
 
-        <p><label class="label" for="Email">Email:</label><input id="Email" type="text" name="Email" size="30" maxlength="40" value="<?php if (isset($_POST['Email'])) echo $_POST['Email']; ?>"></p>
+        <p><label class="label" for="Email">Email:</label><input id="Email" type="email" name="Email" size="30" maxlength="60" value="<?php if (isset($_POST['Email'])) echo $_POST['Email']; ?>"></p>
 
         <p><label class="label" for="PhoneNumber">Resident Phone Number:</label><input id="PhoneNumber" type="text" name="PhoneNumber" size="30" maxlength="60" value="<?php if (isset($_POST['PhoneNumber'])) echo $_POST['PhoneNumber']; ?>" > </p>
 

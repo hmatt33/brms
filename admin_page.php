@@ -117,7 +117,7 @@
     <br>
     <br>
     <br>
-    <!--link to create new building-->
+    <!--link to create new user-->
     <div id="add">
         <a href="register_user.php" class="btn btn-info">Add new user</a>
     </div>

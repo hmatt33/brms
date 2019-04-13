@@ -128,7 +128,7 @@
         //id now passed into the url to go to the add_resident page
         //add resident page will now have access to it
         echo '<br> <br> <br>';
-        echo '<div class="btn btn-info" id="add"><a href="add_resident.php?id=' . $id . '">Add New Resident</a></div>'
+        echo '<div><a href="add_resident.php?id=' . $id . '" class="btn btn-info">Add New Resident</a></div>'
 
 ?>
 </p> 

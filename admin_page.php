@@ -80,8 +80,8 @@
             <td>' . $row['LastName'] . '</td>
             <td>' . $row['Email'] . '</td>
             <td>' . $row['Username'] . '</td>
-            <td><a href="edit_user.php?id=' . $row['UserID'] . '">Edit</a></td>
-            <td><a href="delete_user.php?id=' . $row['UserID'] . '">Delete</a></td>
+            <td><a href="edit_user.php?id=' . $row['UserID'] . '"class="btn btn-primary">Edit</a></td>
+            <td><a href="delete_user.php?id=' . $row['UserID'] . '"class="btn btn-primary">Delete</a></td>
             </tr>';
         }
         echo '</tbody> </table>'; // Close the table.

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en>
 <head>
-    <title>Delete a building</title>
+    <title>Delete a Building</title>
     <meta charset=utf-8>
 </head>
 <body>
@@ -9,7 +9,7 @@
 <?php include("header.php"); ?>
 <div id="content">
 <!-- Start of delete building page-->
-    <h2>Delete a building</h2>
+
     
 <?php 
     //check for a valid building ID, through GET or POST:
@@ -33,6 +33,7 @@
             if (mysqli_affected_rows($dbcon ) == 1) { // If it ran OK.
                 // Print a message:
                 echo '<h3>The building has been deleted.</h3>';	
+		header("Location: buildings.php");
                 } else { // If the query did not run OK.
                     //error message
                     echo '<p class="error">The building could not be deleted.<br>Probably because it does not exist or due to a system error.</p>';
@@ -40,7 +41,8 @@
                     echo '<p>' . mysqli_error($dbcon ) . '<br />Query: ' . $q . '</p>';
                 }
         } else { // No confirmation of deletion.
-            echo '<h3>The building has NOT been deleted.</h3>';	
+            echo '<h3>The building has NOT been deleted.</h3>';
+	    header("Location: buildings.php");	
         }
     } else { // Show the form.
         // Retrieve the user's information:
@@ -50,13 +52,13 @@
             //get the building info
             $row = mysqli_fetch_array ($result, MYSQLI_NUM);
             //display the record being deleted:
-            echo "<h3>Are you sure you want to permanently delete $row[0]?</h3>";
+            echo "<br><br><div class='container'><h3>Are you sure you want to permanently delete $row[0]?</h3></div>";
             //create the form:
-            echo '<form action="delete_building.php" method="post">
-            <input id="submit-yes" type="submit" name="sure" value="Yes"> 
-            <input id="submit-no" type="submit" name="sure" value="No">
+            echo '<div class="container"><form action="delete_building.php" method="post">
+            <input class="btn btn-primary" id="submit-yes" type="submit" name="sure" value="Yes"> 
+            <input class="btn btn-secondary" id="submit-no" type="submit" name="sure" value="No">
             <input type="hidden" name="id" value="' . $id . '">
-            </form>';
+            </form></div>';
 
         } else { // Not a valid user ID.
             echo '<p class="error">This page has been accessed in error.</p>';

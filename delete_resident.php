@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en>
 <head>
-    <title>Delete a building</title>
+    <title>Delete a Resident</title>
     <meta charset=utf-8>
 </head>
 <body>
@@ -9,7 +9,6 @@
 <?php include("header.php"); ?>
 <div id="content">
 <!-- Start of delete building page-->
-    <h2>Delete a building</h2>
     
 <?php 
     //check for a valid resident ID, through GET or POST:

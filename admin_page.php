@@ -123,7 +123,7 @@
 	<br>
 	<a href="buildings.php" class="btn btn-info">Back to Buildings</a>
 	<footer>
-		<?php include('footer.php'); ?>
+		<?php include('footer.html'); ?>
 	</footer>
     </div>
     </div>

@@ -19,7 +19,7 @@
                   <a class="nav-link" href="admin_page.php">Admin</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="password.html">Change Password</a>
+                  <a class="nav-link" href="password.php">Change Password</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="logout.php">Logout</a>

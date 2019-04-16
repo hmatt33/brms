@@ -105,7 +105,7 @@
         } // End of if (empty($errors))section.
     } // End of the conditionals
     // Select the user's information:
-    $q = "SELECT FirstName, LastName, Email, Username FROM Users WHERE UserID=$id";
+    $q = "SELECT FirstName, LastName, Email, Username, Password FROM Users WHERE UserID=$id";
     $result = mysqli_query ($dbcon, $q);
     //if id is valid
     if (mysqli_num_rows($result) == 1) {

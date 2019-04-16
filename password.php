@@ -103,7 +103,7 @@
         $row = mysqli_fetch_array ($result, MYSQLI_NUM);
         $user = $row[0];
         //create the edit form:
-        echo '<form action="pass.php" method="post">
+        echo '<form action="password.php" method="post">
         <p><label class="label" for="Username">Username:</label><input class="fl-left" type="text" name="Username" size="30" maxlength="50" value="' . $row[0] . '" disabled></p>
         <br>
         <p><label class="label" for="Password">Password:</label><input class="fl-left" type="password" name="Password" size="30" maxlength="50" value=""></p>

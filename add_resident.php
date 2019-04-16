@@ -123,6 +123,7 @@ require ('mysqli_connect.php');
         <input type="hidden" name="id" value="<?php echo $id ?>"/>
 
         <p><input class="btn btn-primary" id="submit" type="submit" name="submit" value="Register"></p>
+	<a href="residents.php?id=<?php echo $id ?>" class="btn btn-info">Back to Residents</a>
 	</div></div>
     </form>
 </div>

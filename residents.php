@@ -110,7 +110,7 @@
     $row = mysqli_fetch_array ($result, MYSQLI_NUM);
     $residents = $row[0];
     mysqli_close($dbcon); // Close the database connection.
-    echo "<p>Total amount of Residents: $residents</p>";
+    echo "<div class='alert alert-primary my-2' role='alert'><p>Total amount of Residents: $residents</p></div>";
     if ($pages > 1) {
         echo '<p>';
         //What number is the current page?
@@ -130,7 +130,8 @@
         //id now passed into the url to go to the add_resident page
         //add resident page will now have access to it
         echo '<br> <br> <br>';
-        echo '<div><a href="add_resident.php?id=' . $id . '" class="btn btn-info">Add New Resident</a></div>'
+        echo '<div class="my-2"><a href="add_resident.php?id=' . $id . '" class="btn btn-primary">Add New Resident</a></div>';
+	echo '<div><a href="buildings.php" class="btn btn-info">Back to Buildings</a></div>';
 
 ?>
 </p> 

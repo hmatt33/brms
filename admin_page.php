@@ -118,9 +118,10 @@
     <br>
     <br>
     <!--link to create new user-->
-    <div id="add">
-        <a href="register_user.php" class="btn btn-info">Add new user</a>
-    </div>
+        <a href="register_user.php" class="btn btn-primary">Add new user</a>
+	<br>
+	<br>
+	<a href="buildings.php" class="btn btn-info">Back to Buildings</a>
 	<footer>
 		<?php include('footer.php'); ?>
 	</footer>

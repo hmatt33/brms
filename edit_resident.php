@@ -137,6 +137,7 @@
         <br>
         <input type="hidden" name="id" value="' . $id . '" />
         <p><input class="btn btn-primary" id="submit" type="submit" name="submit" value="Edit"></p>
+	<a href="residents.php?id=' . $id . '"  class="btn btn-info">Back to Residents</a>
         </div></div></form></div>';
     } else {
         echo '<p class="error">This page has been accessed in error.</p>';

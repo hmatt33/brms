@@ -99,7 +99,8 @@ require ('mysqli_connect.php');
 		<input class="form-control" id="TotalRooms" type="number" name="TotalRooms" size="30" maxlength="60" value="<?php if (isset($_POST['TotalRooms'])) echo $_POST['TotalRooms']; ?>" > </p>
         	<p><label class="col-form-label" for="TotalVacRooms">Total Vacant Rooms:</label>
 		<input class="form-control" id="TotalVacRooms" type="number" name="TotalVacRooms" size="30" maxlength="60" value="<?php if (isset($_POST['TotalVacRooms'])) echo $_POST['TotalVacRooms']; ?>" > </p>
-       		<p><input class="btn btn-primary" id="submit" type="submit" name="submit" value="Register"></p>
+       		<div><p><input class="btn btn-primary" id="submit" type="submit" name="submit" value="Register"></p>
+		<p><a href="buildings.php" class="btn btn-info">Back to Buildings</a></p></div>
 	   </div>
 	</div>
     </form>

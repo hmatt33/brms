@@ -54,7 +54,7 @@
         <th scope="col"><b>Building Name</b></th>
         <th scope="col"><b>Address</b></th>
         <th scope="col"><b>Phone Number</b></th>
-        <th scope="col"><b>Total Rooms</b></th>
+        <th scope="col"><b>Total Apartments/Units</b></th>
         <th scope="col"><b>Total Vacancies</b></th>
         <th scope="col"><b>Residents</b></th>
         <th scope="col"><b>Edit</b></th>

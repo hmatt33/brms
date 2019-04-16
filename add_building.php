@@ -9,7 +9,7 @@
     <?php include("header.php"); ?>
 <div id="content">
 <!-- Start of add buildings page-->
-        <h2>Add a building</h2>
+        <div class="container"><h2>Register a building</h2></div>
 
 <?php 
 require ('mysqli_connect.php'); 
@@ -84,7 +84,8 @@ require ('mysqli_connect.php');
         } // End of if (empty($errors))section.
     } // End of the conditionals
 ?>
-    <h2>Register</h2>
+
+<div class="container">
     <form action="add_building.php" method="post">
         <p><label class="label" for="Name">Building Name:</label><input id="fname" type="text" name="Name" size="30" maxlength="30" value="<?php if (isset($_POST['Name'])) echo $_POST['Name']; ?>"></p>
         <p><label class="label" for="Address">Buiding Address:</label><input id="lname" type="text" name="Address" size="30" maxlength="40" value="<?php if (isset($_POST['Address'])) echo $_POST['Address']; ?>"></p>
@@ -93,7 +94,9 @@ require ('mysqli_connect.php');
         <p><label class="label" for="TotalVacRooms">Total Vacant Rooms:</label><input id="TotalVacRooms" type="number" name="TotalVacRooms" size="30" maxlength="60" value="<?php if (isset($_POST['TotalVacRooms'])) echo $_POST['TotalVacRooms']; ?>" > </p>
         <p><input id="submit" type="submit" name="submit" value="Register"></p>
     </form>
-    
+
+</div>
+
     <footer>
         <?php include('footer.html'); ?>
     </footer>

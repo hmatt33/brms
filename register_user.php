@@ -10,7 +10,7 @@
 <!doctype html>
 <html lang=en>
 <head>
-    <title>Add a Building</title>
+    <title>Add a User</title>
     <meta charset=utf-8>
 </head> 
 <body>
@@ -18,7 +18,7 @@
 <?php include("header.php"); ?>
 <div id="content">
 <!-- Start of add buildings page-->
-        <h2>Register a user</h2>
+        <div class="container"><h2>Register a User</h2></div>
 
 <?php 
 require ('mysqli_connect.php'); 
@@ -96,16 +96,29 @@ require ('mysqli_connect.php');
         } // End of if (empty($errors))section.
     } // End of the conditionals
 ?>
-    <h2>Register</h2>
+<div class="container">
     <form action="register_user.php" method="post">
-        <p><label class="label" for="FirstName">First Name:</label><input id="FirstName" type="text" name="FirstName" size="30" maxlength="30" value="<?php if (isset($_POST['FirstName'])) echo $_POST['FirstName']; ?>"></p>
-        <p><label class="label" for="LastName">Last Name:</label><input id="LastName" type="text" name="LastName" size="30" maxlength="40" value="<?php if (isset($_POST['LastName'])) echo $_POST['LastName']; ?>"></p>
-        <p><label class="label" for="Email">Email:</label><input id="Email" type="email" name="Email" size="30" maxlength="60" value="<?php if (isset($_POST['Email'])) echo $_POST['Email']; ?>" > </p>
-        <p><label class="label" for="Username">Username:</label><input id="Username" type="text" name="Username" size="30" maxlength="60" value="<?php if (isset($_POST['Username'])) echo $_POST['Username']; ?>" > </p>
-        <p><label class="label" for="Password">Password:</label><input id="Password" type="password" name="Password" size="30" maxlength="60" value="<?php if (isset($_POST['Password'])) echo $_POST['Password']; ?>" > </p>
-        <p><label class="label" for="Password2">Confirm Password:</label><input id="Password2" type="password" name="Password2" size="30" maxlength="60" value="<?php if (isset($_POST['Password2'])) echo $_POST['Password2']; ?>" > </p>
-        <p><input id="submit" type="submit" name="submit" value="Register"></p>
+        <div class="form-group row">
+	   <div class="col-xs-3">
+		<p><label class="col-form-label" for="FirstName">First Name:</label>
+		<input class="form-control" id="FirstName" type="text" name="FirstName" size="30" maxlength="30" value="<?php if (isset($_POST['FirstName'])) echo $_POST['FirstName']; ?>"></p>
+       		<p><label class="col-form-label" for="LastName">Last Name:</label>
+		<input class="form-control" id="LastName" type="text" name="LastName" size="30" maxlength="40" value="<?php if (isset($_POST['LastName'])) echo $_POST['LastName']; ?>"></p>
+        	<p><label class="col-form-label" for="Email">Email:</label>
+		<input class="form-control" id="Email" type="email" name="Email" size="30" maxlength="60" value="<?php if (isset($_POST['Email'])) echo $_POST['Email']; ?>" > </p>
+        	<p><label class="col-form-label" for="Username">Username:</label>
+		<input class="form-control" id="Username" type="text" name="Username" size="30" maxlength="60" value="<?php if (isset($_POST['Username'])) echo $_POST['Username']; ?>" > </p>
+        	<p><label class="col-form-label" for="Password">Password:</label>
+		<input class="form-control" id="Password" type="password" name="Password" size="30" maxlength="60" value="<?php if (isset($_POST['Password'])) echo $_POST['Password']; ?>" > </p>
+        	<p><label class="col-form-label" for="Password2">Confirm Password:</label>
+		<input class="form-control" id="Password2" type="password" name="Password2" size="30" maxlength="60" value="<?php if (isset($_POST['Password2'])) echo $_POST['Password2']; ?>" > </p>
+        	<p><input class="btn btn-primary" id="submit" type="submit" name="submit" value="Register"></p>
+	   </div>
+	</div>
     </form>
+</div>
+
+
     
     <footer>
         <?php include('footer.html'); ?>

@@ -68,6 +68,7 @@
         <th scope="col"><b>Resident Type</b></th>
 	    <th scope="col"><b>Billing Address</b></th>
 	    <th scope="col"><b>Emergency Contact Information</b></th>
+	    <th scope="col"><b>Send Email</b></th>
         <th scope="col"><b>Edit</b></th>
         <th scope="col"><b>Delete</b></th>
         </tr>
@@ -88,6 +89,7 @@
             <td>' . $row['ResType'] . '</td>
 	        <td>' . $row['BillingAddress'] . '</td>
 	        <td>' . $row['EmerContactInfo'] . '</td>
+				<td><a class="btn btn-primary" href="email_resident.php?id=' . $row['ResidentID'] . '">Email</a></td>
             <td><a class="btn btn-primary" href="edit_resident.php?id=' . $row['ResidentID'] . '">Edit</a></td>
             <td><a class="btn btn-primary" href="delete_resident.php?id=' . $row['ResidentID'] . '">Delete</a></td>
             </tr>';

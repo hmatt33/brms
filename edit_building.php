@@ -112,7 +112,7 @@
         <p><label class="col-form-label" for="TotalVacRooms">Number of Vacant Rooms:</label><input class="fl-left form-control" type="number" name="TotalVacRooms" size="30" maxlength="50" value="' . $row[4] . '"></p>
         <br>
         <p><input class="btn btn-primary" id="submit" type="submit" name="submit" value="Edit"></p>
-        <br>
+	<p><a href="buildings.php" class="btn btn-info">Back to Buildings</a></p>
         <input type="hidden" name="id" value="' . $id . '" />
         </div></div></form></div>';
     } else {

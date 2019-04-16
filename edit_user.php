@@ -126,6 +126,7 @@
         <p><label class="col-form-label" for="Username">Confirm Password:</label><input class="fl-left form-control" type="password" name="Password2" size="30" maxlength="50" value="' . $row[4] . '"></p>
         <br>
         <p><input class="btn btn-primary" id="submit" type="submit" name="submit" value="Edit"></p>
+	<a href="admin_page.php" class="btn btn-info">Back to Users</a>
         <br>
         <input type="hidden" name="id" value="' . $id . '" />
         </div></div></form></div>';

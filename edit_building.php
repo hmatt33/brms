@@ -10,21 +10,15 @@
 <?php include("header.php"); ?>
 <div id="content">
 <!-- Start of edit buildings page-->
-        <h2>Edit a building</h2>
+        <div class="container"><h2>Edit a Building</h2></div>
     
 <?php 
     //After clicking the Edit link in the builings page
     //looks for a valid building ID, either through GET or POST:
     if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { //from buildings.php
         $id = $_GET['id'];
-        echo '<h2>Edit Building ID: ';
-        echo $id;
-        echo '</h2>';
     } elseif ( (isset($_POST['id'])) && (is_numeric($_POST['id'])) ) {
         $id = $_POST['id'];
-        echo '<h2>Edit Building ID: ';
-        echo $id;
-        echo '</h2>';
     } else { // If no valid ID, stop the script
         echo '<p class="error">This page has been accessed in error.</p>';
         include ('footer.php'); 
@@ -106,21 +100,21 @@
         //get the building info
         $row = mysqli_fetch_array ($result, MYSQLI_NUM);
         //create the edit form:
-        echo '<form action="edit_building.php" method="post">
-        <p><label class="label" for="Name">Building Name:</label><input class="fl-left" type="text" name="Name" size="30" maxlength="50" value="' . $row[0] . '"></p>
+        echo '<div class="container"><form action="edit_building.php" method="post"><div class="form-group row"><div class="col-xs-3">
+        <p><label class="col-form-label" for="Name">Building Name:</label><input class="fl-left form-control" type="text" name="Name" size="30" maxlength="50" value="' . $row[0] . '"></p>
         <br>
-        <p><label class="label" for="Address">Building Address:</label><input class="fl-left" type="text" name="Address" size="30" maxlength="50" value="' . $row[1] . '"></p>
+        <p><label class="col-form-label" for="Address">Building Address:</label><input class="fl-left form-control" type="text" name="Address" size="30" maxlength="50" value="' . $row[1] . '"></p>
         <br>
-        <p><label class="label" for="PhoneNumber">Building Phone Number:</label><input class="fl-left" type="text" name="PhoneNumber" size="30" maxlength="50" value="' . $row[2] . '"></p>
+        <p><label class="col-form-label" for="PhoneNumber">Building Phone Number:</label><input class="fl-left form-control" type="text" name="PhoneNumber" size="30" maxlength="50" value="' . $row[2] . '"></p>
         <br>
-        <p><label class="label" for="TotalRooms">Total Number of Rooms:</label><input class="fl-left" type="number" name="TotalRooms" size="30" maxlength="50" value="' . $row[3] . '"></p>
+        <p><label class="col-form-label" for="TotalRooms">Total Number of Rooms:</label><input class="fl-left form-control" type="number" name="TotalRooms" size="30" maxlength="50" value="' . $row[3] . '"></p>
         <br>
-        <p><label class="label" for="TotalVacRooms">Number of Vacant Rooms:</label><input class="fl-left" type="number" name="TotalVacRooms" size="30" maxlength="50" value="' . $row[4] . '"></p>
+        <p><label class="col-form-label" for="TotalVacRooms">Number of Vacant Rooms:</label><input class="fl-left form-control" type="number" name="TotalVacRooms" size="30" maxlength="50" value="' . $row[4] . '"></p>
         <br>
-        <p><input id="submit" type="submit" name="submit" value="Edit"></p>
+        <p><input class="btn btn-primary" id="submit" type="submit" name="submit" value="Edit"></p>
         <br>
         <input type="hidden" name="id" value="' . $id . '" />
-        </form>';
+        </div></div></form></div>';
     } else {
         echo '<p class="error">This page has been accessed in error.</p>';
     }

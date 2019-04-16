@@ -9,14 +9,11 @@
     <?php include("header.php"); ?>
 <div id="content">
 <!-- Start of add residents page-->
-        <h2>Add a resident</h2>
+        <div class="container"><h2>Add a Resident</h2></div>
 <?php 
 
 if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { //from residents
         $id = $_GET['id'];
-        echo '<h2>Add Resident to Building ID: ';
-        echo $id;
-        echo '</h2>';
     } elseif ( (isset($_POST['id'])) && (is_numeric($_POST['id'])) ) {
         $id = $_POST['id'];
     } else { // If no valid ID, stop the script
@@ -103,29 +100,32 @@ require ('mysqli_connect.php');
         } // End of if (empty($errors))section.
     } // End of the conditionals
 ?>
-    <h2>Register</h2>
+<div class="container">
     <form action="add_resident.php" method="post">
-        <p><label class="label" for="FirstName">First Name:</label><input id="FirstName" type="text" name="FirstName" size="30" maxlength="30" value="<?php if (isset($_POST['FirstName'])) echo $_POST['FirstName']; ?>"></p>
+	<div class="form-group row">
+	<div class="col-xs-3">
+        <p><label class="col-form-label" for="FirstName">First Name:</label><input class="form-control" id="FirstName" type="text" name="FirstName" size="30" maxlength="30" value="<?php if (isset($_POST['FirstName'])) echo $_POST['FirstName']; ?>"></p>
 
-        <p><label class="label" for="LastName">Last Name:</label><input id="LastName" type="text" name="LastName" size="30" maxlength="40" value="<?php if (isset($_POST['LastName'])) echo $_POST['LastName']; ?>"></p>
+        <p><label class="col-form-label" for="LastName">Last Name:</label><input class="form-control" id="LastName" type="text" name="LastName" size="30" maxlength="40" value="<?php if (isset($_POST['LastName'])) echo $_POST['LastName']; ?>"></p>
 
-        <p><label class="label" for="Email">Email:</label><input id="Email" type="email" name="Email" size="30" maxlength="60" value="<?php if (isset($_POST['Email'])) echo $_POST['Email']; ?>"></p>
+        <p><label class="col-form-label" for="Email">Email:</label><input class="form-control" id="Email" type="email" name="Email" size="30" maxlength="60" value="<?php if (isset($_POST['Email'])) echo $_POST['Email']; ?>"></p>
 
-        <p><label class="label" for="PhoneNumber">Resident Phone Number:</label><input id="PhoneNumber" type="text" name="PhoneNumber" size="30" maxlength="60" value="<?php if (isset($_POST['PhoneNumber'])) echo $_POST['PhoneNumber']; ?>" > </p>
+        <p><label class="col-form-label" for="PhoneNumber">Resident Phone Number:</label><input class="form-control" id="PhoneNumber" type="text" name="PhoneNumber" size="30" maxlength="60" value="<?php if (isset($_POST['PhoneNumber'])) echo $_POST['PhoneNumber']; ?>" > </p>
 
-        <p><label class="label" for="ApartNum">Apartment Number:</label><input id="ApartNum" type="number" name="ApartNum" size="30" maxlength="60" value="<?php if (isset($_POST['ApartNum'])) echo $_POST['ApartNum']; ?>" > </p>
+        <p><label class="col-form-label" for="ApartNum">Apartment Number:</label><input class="form-control" id="ApartNum" type="number" name="ApartNum" size="30" maxlength="60" value="<?php if (isset($_POST['ApartNum'])) echo $_POST['ApartNum']; ?>" > </p>
 
-        <p><label class="label" for="ResType">Resident Type:</label><input id="ResType" type="text" name="ResType" size="30" maxlength="60" value="<?php if (isset($_POST['ResType'])) echo $_POST['ResType']; ?>" > </p>
+        <p><label class="col-form-label" for="ResType">Resident Type:</label><input class="form-control" id="ResType" type="text" name="ResType" size="30" maxlength="60" value="<?php if (isset($_POST['ResType'])) echo $_POST['ResType']; ?>" > </p>
 
-        <p><label class="label" for="BillingAddress">Billing Address:</label><input id="BillingAddress" type="text" name="BillingAddress" size="30" maxlength="60" value="<?php if (isset($_POST['BillingAddress'])) echo $_POST['BillingAddress']; ?>" > </p>
+        <p><label class="col-form-label" for="BillingAddress">Billing Address:</label><input class="form-control" id="BillingAddress" type="text" name="BillingAddress" size="30" maxlength="60" value="<?php if (isset($_POST['BillingAddress'])) echo $_POST['BillingAddress']; ?>" > </p>
 
-        <p><label class="label" for="EmerContactInfo">Emergency Contact Info:</label><input id="EmerContactInfo" type="text" name="EmerContactInfo" size="30" maxlength="60" value="<?php if (isset($_POST['EmerContactInfo'])) echo $_POST['EmerContactInfo']; ?>" > </p>
+        <p><label class="col-formlabel" for="EmerContactInfo">Emergency Contact Info:</label><input class="form-control" id="EmerContactInfo" type="text" name="EmerContactInfo" size="30" maxlength="60" value="<?php if (isset($_POST['EmerContactInfo'])) echo $_POST['EmerContactInfo']; ?>" > </p>
 
         <input type="hidden" name="id" value="<?php echo $id ?>"/>
 
-        <p><input id="submit" type="submit" name="submit" value="Register"></p>
+        <p><input class="btn btn-primary" id="submit" type="submit" name="submit" value="Register"></p>
+	</div></div>
     </form>
-    
+</div>
     <footer>
         <?php include('footer.html'); ?>
     </footer>

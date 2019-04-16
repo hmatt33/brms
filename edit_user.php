@@ -19,21 +19,15 @@
 <?php include("header.php"); ?>
 <div id="content">
 <!-- Start of edit users page-->
-<h2>Edit a User</h2>
+<div class="container"><h2>Edit a User</h2></div>
     
 <?php 
     //After clicking the Edit link in the admin page that displays all users
     //looks for a valid user ID, either through GET or POST:
     if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { //from buildings.php
         $id = $_GET['id'];
-        echo '<h2>Edit User ID: ';
-        echo $id;
-        echo '</h2>';
     } elseif ( (isset($_POST['id'])) && (is_numeric($_POST['id'])) ) {
         $id = $_POST['id'];
-        echo '<h2>Edit User ID: ';
-        echo $id;
-        echo '</h2>';
     } else { // If no valid ID, stop the script
         echo '<p class="error">This page has been accessed in error.</p>';
         include ('footer.html'); 
@@ -118,23 +112,23 @@
         //get the user info
         $row = mysqli_fetch_array ($result, MYSQLI_NUM);
         //create the edit form:
-        echo '<form action="edit_user.php" method="post">
-        <p><label class="label" for="FirstName">First Name:</label><input class="fl-left" type="text" name="FirstName" size="30" maxlength="50" value="' . $row[0] . '"></p>
+        echo '<div class="container"><form action="edit_user.php" method="post"><div class="form-group row"><div class="col-xs-3">
+        <p><label class="col-form-label" for="FirstName">First Name:</label><input class="fl-left form-control" type="text" name="FirstName" size="30" maxlength="50" value="' . $row[0] . '"></p>
         <br>
-        <p><label class="label" for="LastName">Last Name:</label><input class="fl-left" type="text" name="LastName" size="30" maxlength="50" value="' . $row[1] . '"></p>
+        <p><label class="col-form-label" for="LastName">Last Name:</label><input class="fl-left form-control" type="text" name="LastName" size="30" maxlength="50" value="' . $row[1] . '"></p>
         <br>
-        <p><label class="label" for="Email">Email:</label><input class="fl-left" type="text" name="Email" size="30" maxlength="50" value="' . $row[2] . '"></p>
+        <p><label class="col-form-label" for="Email">Email:</label><input class="fl-left form-control" type="text" name="Email" size="30" maxlength="50" value="' . $row[2] . '"></p>
         <br>
-        <p><label class="label" for="Username">Username:</label><input class="fl-left" type="text" name="Username" size="30" maxlength="50" value="' . $row[3] . '"></p>
+        <p><label class="col-form-label" for="Username">Username:</label><input class="fl-left form-control" type="text" name="Username" size="30" maxlength="50" value="' . $row[3] . '"></p>
         <br>
-        <p><label class="label" for="Password">Password:</label><input class="fl-left" type="password" name="Password" size="30" maxlength="50" value="' . $row[4] . '"></p>
+        <p><label class="col-form-label" for="Password">Password:</label><input class="fl-left form-control" type="password" name="Password" size="30" maxlength="50" value="' . $row[4] . '"></p>
         <br>
-        <p><label class="label" for="Username">Confirm Password:</label><input class="fl-left" type="password" name="Password2" size="30" maxlength="50" value="' . $row[4] . '"></p>
+        <p><label class="col-form-label" for="Username">Confirm Password:</label><input class="fl-left form-control" type="password" name="Password2" size="30" maxlength="50" value="' . $row[4] . '"></p>
         <br>
-        <p><input id="submit" type="submit" name="submit" value="Edit"></p>
+        <p><input class="btn btn-primary" id="submit" type="submit" name="submit" value="Edit"></p>
         <br>
         <input type="hidden" name="id" value="' . $id . '" />
-        </form>';
+        </div></div></form></div>';
     } else {
         echo '<p class="error">This page has been accessed in error.</p>';
     }

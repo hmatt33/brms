@@ -9,21 +9,15 @@
 <?php include("header.php"); ?>
 <div id="content">
 <!-- Start of edit residents page-->
-  <h2>Edit a resident</h2>
+  <div class="container"><h2>Edit a Resident</h2></div>
     
 <?php 
     //After clicking the Edit link in the builings page
     //looks for a valid building ID, either through GET or POST:
     if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { //from buildings.php
         $id = $_GET['id'];
-        echo '<h2>Edit Resident ID: ';
-        echo $id;
-        echo '</h2>';
     } elseif ( (isset($_POST['id'])) && (is_numeric($_POST['id'])) ) {
         $id = $_POST['id'];
-        echo '<h2>Edit Resident ID: ';
-        echo $id;
-        echo '</h2>';
     } else { // If no valid ID, stop the script
         echo '<p class="error">This page has been accessed in error.</p>';
         include ('footer.php'); 
@@ -124,26 +118,26 @@
         //get the building info
         $row = mysqli_fetch_array ($result, MYSQLI_NUM);
         //create the edit form:
-        echo '<form action="edit_resident.php" method="post">
-        <p><label class="label" for="FirstName">First Name:</label><input class="fl-left" type="text" name="FirstName" size="30" maxlength="50" value="' . $row[0] . '"></p>
+        echo '<div class="container"><form action="edit_resident.php" method="post"><div class="form-group row"><div class="col-xs-3">
+        <p><label class="col-form-label" for="FirstName">First Name:</label><input class="fl-left form-control" type="text" name="FirstName" size="30" maxlength="50" value="' . $row[0] . '"></p>
         <br>
-        <p><label class="label" for="LastName">Last Name:</label><input class="fl-left" type="text" name="LastName" size="30" maxlength="50" value="' . $row[1] . '"></p>
+        <p><label class="col-form-label" for="LastName">Last Name:</label><input class="fl-left form-control" type="text" name="LastName" size="30" maxlength="50" value="' . $row[1] . '"></p>
         <br>
-	<p><label class="label" for="Emai">Email:</label><input class="fl-left" type="text" name="Email" size="30" maxlength="50" value="' . $row[2] . '"></p>
+	<p><label class="col-form-label" for="Emai">Email:</label><input class="fl-left form-control" type="text" name="Email" size="30" maxlength="50" value="' . $row[2] . '"></p>
         <br>
-        <p><label class="label" for="PhoneNumber">Phone Number:</label><input class="fl-left" type="text" name="PhoneNumber" size="30" maxlength="50" value="' . $row[3] . '"></p>
+        <p><label class="col-form-label" for="PhoneNumber">Phone Number:</label><input class="fl-left form-control" type="text" name="PhoneNumber" size="30" maxlength="50" value="' . $row[3] . '"></p>
         <br>
-        <p><label class="label" for="ApartNum">Apartment Number:</label><input class="fl-left" type="text" name="ApartNum" size="30" maxlength="50" value="' . $row[4] . '"></p>
+        <p><label class="col-form-label" for="ApartNum">Apartment Number:</label><input class="fl-left form-control" type="text" name="ApartNum" size="30" maxlength="50" value="' . $row[4] . '"></p>
         <br>
-        <p><label class="label" for="ResType">Resident Type:</label><input class="fl-left" type="text" name="ResType" size="30" maxlength="50" value="' . $row[5] . '"></p>
+        <p><label class="col-form-label" for="ResType">Resident Type:</label><input class="fl-left form-control" type="text" name="ResType" size="30" maxlength="50" value="' . $row[5] . '"></p>
         <br>
-	<p><label class="label" for="BillingAddress">Billing Address:</label><input class="fl-left" type="text" name="BillingAddress" size="30" maxlength="50" value="' . $row[6] . '"></p>
+	<p><label class="col-form-label" for="BillingAddress">Billing Address:</label><input class="fl-left form-control" type="text" name="BillingAddress" size="30" maxlength="50" value="' . $row[6] . '"></p>
         <br>
-	<p><label class="label" for="EmerContactInfo">Emergency Contact Information:</label><input class="fl-left" type="text" name="EmerContactInfo" size="30" maxlength="50" value="' . $row[7] . '"></p>
+	<p><label class="col-form-label" for="EmerContactInfo">Emergency Contact Information:</label><input class="fl-left form-control" type="text" name="EmerContactInfo" size="30" maxlength="50" value="' . $row[7] . '"></p>
         <br>
         <input type="hidden" name="id" value="' . $id . '" />
-        <p><input id="submit" type="submit" name="submit" value="Edit"></p>
-        </form>';
+        <p><input class="btn btn-primary" id="submit" type="submit" name="submit" value="Edit"></p>
+        </div></div></form></div>';
     } else {
         echo '<p class="error">This page has been accessed in error.</p>';
     }

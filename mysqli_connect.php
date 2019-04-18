@@ -1,7 +1,7 @@
-<?php 
-// This creates a connection to the database and to MySQL, 
+<?php
+// This creates a connection to the database and to MySQL,
 // Set the access details as constants:
-DEFINE ('DB_HOST', '127.0.0.1');
+DEFINE ('DB_HOST', '127.0.0.1'); 
 DEFINE ('DB_USER', 'root');
 DEFINE ('DB_PASSWORD', 'seedubuntu');
 DEFINE ('DB_NAME', 'brms');

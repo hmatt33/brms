@@ -10,7 +10,7 @@ Our Group Name for this project is *OutOfTheBoxProgramming*. The Team consists o
 * Faye Lopez (https://github.com/lopezk8)
 
 ## Purpose of System:
-The Team is just beginning on the implementation stage of the project. BRMS is a websystem built with html,php,and mysql. This websystem is meant to use a database and mulitple tables to keep track of multiple different buildings, and the residents who live there. This system is meant to be used by the employees of a realestate company, the only ones who will have a valid login is an employee. This system should let the company add/remove/edit a building's information, as well as add/remove/edit a resident's information. The system will allow the user to select a building, and be able to see a list of all residents within that building.
+The Team is just beginning on the implementation stage of the project. BRMS is a web system built with html,php,and mysql. This web system is meant to use a database and multiple tables to keep track of multiple different buildings, and the residents who live there. This system is meant to be used by the employees of a realestate company, the only ones who will have a valid login is an employee. This system should let the company add/remove/edit a building's information, as well as add/remove/edit a resident's information. The system will allow the user to select a building, and be able to see a list of all residents within that building.
 
 ## Current Progress:
 * Login ability is done
@@ -26,32 +26,32 @@ The Team is just beginning on the implementation stage of the project. BRMS is a
     * checks to make sure user has admin status
     * admin is the only one able to create new users, edit/delete users
 * FAQ page has been started
-* Header has been updated to inlcude admin linkns
+* Header has been updated to include admin links
 * edit user is done
 * adding new buildings is done
 * adding new users is done
 * deleting users and buildings is done
 * ability for user to change password is done
 * displaying residents is done
-	* displaying residens only displays the residents in the building selected
+	* displaying residents only displays the residents in the building selected
 * adding new residents is fully functional
 * editing and deleting residents fully functional
 * added more session data to login
-* added checkboxes to residents table so user can select multiple residents to email
+* added check boxes to residents table so user can select multiple residents to email
 * code to email multiple residents mostly finished but not fully tested
-    
+
 ## Planned Additions:
 * CSS styling for site
 * Finish the FAQ page
-* ability to edit residents
-* ability to delete residents
 * displaying all residents no matter the building
 	* make this page be accessed from the header nav bar
 * allow the user to search for a resident within the all residents page
-* allow the user to sort the all residents page
-	* possibly bring this ability into the regular residents page
 * allow the user to email a selected resident
-* set up smtp in order to fully test if sending emails works
+* add a user info page where can see their own account information
+  * move the change password button to the user info page
+* add more security by encrypting the passwords as they go into the Database
+  * do the same thing for any passwords edited or changed as well
+
 
 ### Acknowledgments/References/Sources
 

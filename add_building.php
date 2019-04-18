@@ -3,7 +3,7 @@
 <head>
     <title>Add a Building</title>
     <meta charset="utf-8">
-</head> 
+</head>
 <body>
 <div id="container">
     <?php include("header.php"); ?>
@@ -11,8 +11,8 @@
 <!-- Start of add buildings page-->
         <div class="container"><h2>Register a building</h2></div>
 
-<?php 
-require ('mysqli_connect.php'); 
+<?php
+require ('mysqli_connect.php');
     //After clicking the add building link
     //has the form been submitted?
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -23,7 +23,7 @@ require ('mysqli_connect.php');
         } else {
             $name = mysqli_real_escape_string($dbcon, trim($_POST['Name']));
         }
-        //look for the building address 
+        //look for the building address
         if (empty($_POST['Address'])) {
             $errors[] = 'You forgot to enter the building address.';
         } else {
@@ -37,7 +37,7 @@ require ('mysqli_connect.php');
         }
         //look for number of total rooms in the building
         if (empty($_POST['TotalRooms'])) {
-            $errors[] = 'You forgot to enter the total rooms';
+            $errors[] = 'You forgot to enter the total apartments/units';
         } else {
             $rooms = mysqli_real_escape_string($dbcon, trim($_POST['TotalRooms']));
         }
@@ -59,7 +59,7 @@ require ('mysqli_connect.php');
                 $q = "INSERT INTO Buildings(Name, Address, PhoneNumber, TotalRooms, TotalVacRooms) VALUES('$name', '$addr', '$phone', '$rooms', '$vac')";
                 $result = mysqli_query ($dbcon, $q);
                 if (mysqli_affected_rows($dbcon) == 1) {
-                    //if added correctly echo:          
+                    //if added correctly echo:
                     header("Location: buildings.php");
                     echo '<h3>building has been added.</h3>';
                 } else {
@@ -95,7 +95,7 @@ require ('mysqli_connect.php');
 		<input class="form-control" id="lname" type="text" name="Address" size="30" maxlength="40" value="<?php if (isset($_POST['Address'])) echo $_POST['Address']; ?>"></p>
         	<p><label class="col-form-label" for="PhoneNumber">Building Phone Number:</label>
 		<input class="form-control" id="PhoneNumber" type="text" name="PhoneNumber" size="30" maxlength="60" value="<?php if (isset($_POST['PhoneNumber'])) echo $_POST['PhoneNumber']; ?>" > </p>
-        	<p><label class="col-form-label" for="TotalRooms">Total Number of Rooms:</label>
+        	<p><label class="col-form-label" for="TotalRooms">Total Number of apartments/units:</label>
 		<input class="form-control" id="TotalRooms" type="number" name="TotalRooms" size="30" maxlength="60" value="<?php if (isset($_POST['TotalRooms'])) echo $_POST['TotalRooms']; ?>" > </p>
         	<p><label class="col-form-label" for="TotalVacRooms">Total Vacant Rooms:</label>
 		<input class="form-control" id="TotalVacRooms" type="number" name="TotalVacRooms" size="30" maxlength="60" value="<?php if (isset($_POST['TotalVacRooms'])) echo $_POST['TotalVacRooms']; ?>" > </p>

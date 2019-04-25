@@ -1,4 +1,4 @@
-<?php											
+<?php
     session_start();
     if (!isset($_SESSION['UserLevel']) or ($_SESSION['UserLevel'] != 1)) {
         header("Location: buildings.php");
@@ -19,15 +19,15 @@
 <div class="col-sm-12" id="container">
     <?php include('header.php'); ?>
 <div id="content">
-        
+
 <!--Start of buildings page-->
 <h2>All Users Registered in the System</h2>
 
 <p>
-<?php 
+<?php
     //retrieve all the records from the users table.
     require ('mysqli_connect.php'); // Connect to the database.
-    
+
     $pagerows = 20;
     // Has the total number of pagess already been calculated?
     if (isset($_GET['p']) && is_numeric ($_GET['p'])) { //already been calculated
@@ -73,7 +73,6 @@
         <tbody>';
     // Fetch and print all the records:
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-        $_SESSION['UserID'] = $row['UserID'];
         echo '<tr>
             <td>' . $row['UserID'] . '</td>
             <td>' . $row['FirstName'] . '</td>
@@ -85,7 +84,7 @@
             </tr>';
         }
         echo '</tbody> </table>'; // Close the table.
-        mysqli_free_result ($result); // Free up the resources.	
+        mysqli_free_result ($result); // Free up the resources.
     } else { // If it did not run OK.
         // Public message:
         echo '<p class="error">An error has occured, Users cannot be displayed</p>';
@@ -113,7 +112,7 @@
         echo '</p>';
     }
 ?>
-</p> 
+</p>
     <br>
     <br>
     <br>

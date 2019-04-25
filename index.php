@@ -19,7 +19,7 @@
 	<div class="alert alert-warning">
 	<p class="text-center"> WARNING: Only authorized users are allowed to access this system. </p>
 	</div>
-		<?php 
+		<?php
 		//This section processes submissions from the login form.
 		//Check if the form has been submitted:
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -42,7 +42,7 @@
 			if ($user && $pass){
 			//if no problems
 				// Retrieve the user id, first name, and last name for user with that email and password
-				$sql = "SELECT UserID, FirstName, LastName, Email, UserLevel FROM Users WHERE (Username='$user' AND Password='$pass')";
+				$sql = "SELECT UserID, FirstName, LastName, Email, UserLevel FROM Users WHERE (Username='$user' AND Password=sha1('$pass'))";
 				//run the query and assign it to the variable $result
 				$result = mysqli_query ($dbcon, $sql);
 				//Count the number of rows that match the email/password combination
@@ -52,6 +52,7 @@
 					session_start();
 					$_SESSION = mysqli_fetch_array($result, MYSQLI_ASSOC);
 					$_SESSION['UserLevel'] = (int) $_SESSION['UserLevel'];
+					$_SESSION['Username'] = $user;
 					//after logging in person is taken to buildings page
 					header('Location: buildings.php');
 					exit(); // Cancels the rest of the script.
@@ -59,6 +60,8 @@
 					mysqli_close($dbcon);
 				} else { // No match was made.
 					echo '<p class="error">The username and password do not match our records.<br>Please contact your system admin</p>';
+					$test = sha1('thetest');
+					echo $test;
 				}
 
 			} else { // If there was a problem.

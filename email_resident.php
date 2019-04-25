@@ -114,9 +114,11 @@
       <input type="hidden" name="id" value="' . $id . '" />
 			<p><input id="submit" type="submit" name="sendMail" value="Send Email"></p>
 			</form>';
-
+      mysqli_close($dbcon);
 			?>
-
+      <footer>
+        <?php include('footer.html'); ?>
+      </footer>
 		</div>
 	</div>
 </body>

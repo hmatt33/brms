@@ -30,7 +30,7 @@
 					for($i = 0; $i < $num - 1; $i++) {
 						//only loops to n-1 to ensure that a comma is not added to end of last entry
 						//turn array of emails into form the mail function takes
-						$to = $emails[$i] . ", ";
+						$to = $to . $emails[$i] . ", ";
 					}
 					//ensures that there are only commas between every email but no comma at the end of the last entry
 					$to = $to . $emails[$num - 1];
@@ -118,7 +118,7 @@
 
 			//create the email form
 			echo '<form action="email_multiple.php?eList=' . $eList . '" method="post">
-			<p><label class="label" for="To">To:</label><input type="text" name="To" size="30" readonly="readonly" value="' . urldecode($eList) . '"></p>
+			<p><label class="label" for="To">To:</label><input type="text" name="To" size="100" readonly="readonly" value="' . urldecode($eList) . '"></p>
 			<br>
 			<p><label class="label" for="From">From:</label><input type="email" name="From" size="30" maxlength="60" readonly="readonly" value="' . $e . '"></p>
 			<br>

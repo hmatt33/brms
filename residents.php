@@ -8,22 +8,22 @@
 <div id="container" class="col-sm-12">
 <?php include('header.php'); ?>
 <div id="content">
-        
+
 <!--Start of buildings page-->
 <h2>All Residents of this Building </h2>
 
 <p>
-<?php 
+<?php
     //retrieve all the records from the buildings table.
     require ('mysqli_connect.php'); // Connect to the database.
 
-        //looks for the variable named id that was passed into the url by the previous page 
+        //looks for the variable named id that was passed into the url by the previous page
         if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { //from buildings.php
             //saves as variable so this page can use it
         	$id = $_GET['id'];
         }
 
-                 
+
     $pagerows = 30;
     // Has the total number of pagess already been calculated?
     if (isset($_GET['p']) && is_numeric ($_GET['p'])) {//already been calculated
@@ -51,7 +51,7 @@
         $start = 0;
     }
     // Make the query:
-    $q = "SELECT ResidentID, BuildingID, FirstName, LastName, Email, PhoneNumber, ResType, BillingAddress, EmerContactInfo, Edit, Del FROM Residents WHERE BuildingID=$id ORDER BY ResidentID ASC LIMIT $start, $pagerows";		
+    $q = "SELECT ResidentID, BuildingID, FirstName, LastName, Email, PhoneNumber, ApartNum, ResType, BillingAddress, EmerContactInfo, Edit, Del FROM Residents WHERE BuildingID=$id ORDER BY ResidentID ASC LIMIT $start, $pagerows";		
     $result = mysqli_query ($dbcon, $q); // Run the query.
     $residents = mysqli_num_rows($result);
     if ($result) { // If it ran OK, display the records.
@@ -65,6 +65,7 @@
         <th scope="col"><b>Last Name</b></th>
         <th scope="col"><b>Email</b></th>
         <th scope="col"><b>Phone Number</b></th>
+        <th scope="col"><b>Apartment/Unit</b></th>
         <th scope="col"><b>Resident Type</b></th>
 	    <th scope="col"><b>Billing Address</b></th>
 	    <th scope="col"><b>Emergency Contact Information</b></th>
@@ -86,6 +87,7 @@
             <td>' . $row['LastName'] . '</td>
             <td>' . $row['Email'] . '</td>
             <td>' . $row['PhoneNumber'] . '</td>
+            <td>' . $row['ApartNum'] . '</td>
             <td>' . $row['ResType'] . '</td>
 	        <td>' . $row['BillingAddress'] . '</td>
 	        <td>' . $row['EmerContactInfo'] . '</td>
@@ -98,7 +100,7 @@
         echo '</table>'; // Close the table.
         echo '<input type="submit" name="emailSubmit" value="Email Selected Residents" />';
         echo '</form>'; //checkbox form closed
-        mysqli_free_result ($result); // Free up the resources.	
+        mysqli_free_result ($result); // Free up the resources.
     } else { // If it did not run OK.
         // Public message:
         echo '<p class="error">An error has occured, residents cannot be displayed</p>';
@@ -134,7 +136,7 @@
 	echo '<div><a href="buildings.php" class="btn btn-info">Back to Buildings</a></div>';
 
 ?>
-</p> 
+</p>
     <br>
 	<footer>
 		<?php include('footer.php'); ?>

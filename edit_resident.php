@@ -87,8 +87,6 @@
               //if updated redirect to residents page for the building in which the resident lives:
               $q = "SELECT BuildingID FROM Residents WHERE ResidentID='$id'";
               $result = mysqli_query ($dbcon, $q);
-              $row = mysqli_fetch_array ($result, MYSQLI_NUM);
-              header("Location: residents.php?id=" . $row[0]);
             } else {
               //if update failed
               //error message

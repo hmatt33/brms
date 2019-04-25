@@ -26,6 +26,9 @@
 			//start session
 			session_start();
 			$e = $_SESSION['Email'];
+			$to = "SELECT Email FROM Residents WHERE ResidentID='$id'";
+      $result = mysqli_query($dbcon, $to);
+      $row = mysqli_fetch_array($result, MYSQLI_NUM);
 
 			if(isset($_POST['sendMail'])) {
 				//make errors array
@@ -79,10 +82,7 @@
 				//if there are no erros and there is something in the headers array
 				//send the email
 				if(empty($errors)) {
-					mail($to, $subject, $msg, $headers);
-					echo $subject;
-					echo '<br>' . $msg;
-					echo '<br>' . $headers;
+					mail($row[0], $subject, $msg, $headers);
 				} else { //there is an error
 					echo '<p class="error">The following error(s) occurred:<br />';
 					//echo each error in the error array
@@ -94,9 +94,6 @@
 
 			}
 
-      $to = "SELECT Email FROM Residents WHERE ResidentID='$id'";
-      $result = mysqli_query($dbcon, $to);
-      $row = mysqli_fetch_array($result, MYSQLI_NUM);
 			//create the email form
 			echo '<form action="email_resident.php" method="post">
 			<p><label class="label" for="To">To:</label><input type="text" name="To" size="30" readonly="readonly" value="' . $row[0] . '"></p>

@@ -60,8 +60,6 @@
 					mysqli_close($dbcon);
 				} else { // No match was made.
 					echo '<p class="error">The username and password do not match our records.<br>Please contact your system admin</p>';
-					$test = sha1('thetest');
-					echo $test;
 				}
 
 			} else { // If there was a problem.

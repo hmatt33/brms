@@ -44,14 +44,14 @@ The Team is just beginning on the implementation stage of the project. BRMS is a
   * email code seems to work but no actual email is sent without this smtp email server set up
 * encrypted all passwords as they are saved into the database and had login and edit and change passwords check for encryption and encrypt any new changes
 * fixed bug in admin page that kept updating session data when it was not supposed to
+* FAQ page is finished
+* header nav bar has been rearranged and all residents link has been added
+* all residents page is completed
 
 ## Planned Additions:
-* CSS styling for site
-* Finish the FAQ page
-* displaying all residents no matter the building
-	* make this page be accessed from the header nav bar
-* add a user info page where can see their own account information
-  * move the change password button to the user info page
+* No more additions are Planned
+* team is out of time for the project, the semester is over
+* team has added everything we could in time that was given
 
 
 ### Acknowledgments/References/Sources

@@ -1,6 +1,3 @@
-<?php											
-    session_start();
-  ?>
 
 <!doctype html>
 <html lang=en>
@@ -8,24 +5,25 @@
     <title>Change Password</title>
     <meta charset=utf-8>
 </head>
-    
+
 <body>
 <div id="container">
 <?php include("header.php"); ?>
 <div id="content">
 <!-- Start of edit users page-->
 <h2>Change Password</h2>
-    
-<?php 
-	
-	$userid= $_SESSION['UserID'];
+
+<?php
+  session_start();
+
+	$userid = $_SESSION['UserID'];
     //After clicking the Edit link in the admin page that displays all users
     //looks for a valid user ID, either through GET or POST:
-    require ('mysqli_connect.php'); 
+    require ('mysqli_connect.php');
     //if the form is submitted
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors = array();
-        
+
 
         //look for the first name
         if (empty($_POST['NewPassword'])) {
@@ -50,10 +48,9 @@
     	$row = mysqli_fetch_array ($result2, MYSQLI_NUM);
     	$user = $row[0];
         if (!empty($_POST['Password'])) {
-        	$check = "SELECT Password FROM Users WHERE UserID=$userid";
+        	$check = "SELECT UserID FROM Users WHERE Username='$user' AND Password=sha1('$pass')";
         	$match = mysqli_query ($dbcon, $check);
-        	$row = mysqli_fetch_array ($match, MYSQLI_NUM);
-        	if($_POST['Password'] != $row[0]) {
+        	if(mysqli_num_rows($match) == 0) {
         		$errors[] = 'Incorrect password';
         	}
             if ($_POST['NewPassword'] != $_POST['ConfirmP']) {
@@ -66,13 +63,7 @@
         }
         //if there are no errors
         if (empty($errors)) {
-            //check to make sure it isn't a duplicate
-            //check the name, address and phone number
-            $q = "SELECT UserID FROM Users WHERE Username='$user' AND Password= $pass";
-            $result = mysqli_query($dbcon, $q);
-                //if no errors and no duplicate
-                //do the update
-                $q = "UPDATE Users SET Password = '$newpass' WHERE Username='$user'";
+                $q = "UPDATE Users SET Password=sha1('$newpass') WHERE Username='$user'";
                 $result = mysqli_query ($dbcon, $q);
                 if (mysqli_affected_rows($dbcon) == 1) {
                     //if updated correctly echo:
@@ -95,16 +86,15 @@
         } // End of if (empty($errors))section.
     } // End of the conditionals
     // Select the user's information:
-    $q = "SELECT Username, Password FROM Users WHERE UserID=$userid";
-    $result = mysqli_query ($dbcon, $q);
+    //$q = "SELECT Username, Password FROM Users WHERE UserID=$userid";
+    //$result = mysqli_query ($dbcon, $q);
     //if id is valid
-    if (mysqli_num_rows($result) == 1) {
         //get the user info
-        $row = mysqli_fetch_array ($result, MYSQLI_NUM);
-        $user = $row[0];
+        //$row = mysqli_fetch_array ($result, MYSQLI_NUM);
+        //$user = $row[0];
         //create the edit form:
         echo '<form action="password.php" method="post">
-        <p><label class="label" for="Username">Username:</label><input class="fl-left" type="text" name="Username" size="30" maxlength="50" value="' . $row[0] . '" disabled></p>
+        <p><label class="label" for="Username">Username:</label><input class="fl-left" type="text" name="Username" size="30" maxlength="50" value="' . $_SESSION['Username'] . '" disabled></p>
         <br>
         <p><label class="label" for="Password">Password:</label><input class="fl-left" type="password" name="Password" size="30" maxlength="50" value=""></p>
         <br>
@@ -116,9 +106,6 @@
         <br>
         <input type="hidden" name="id" value="" />
         </form>';
-    } else {
-        echo '<p class="error">This page has been accessed in error.</p>';
-    }
     mysqli_close($dbcon);
 ?>
     <footer>

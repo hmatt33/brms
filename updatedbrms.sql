@@ -79,7 +79,7 @@ CREATE TABLE `Residents` (
 
 LOCK TABLES `Residents` WRITE;
 /*!40000 ALTER TABLE `Residents` DISABLE KEYS */;
-INSERT INTO `Residents` VALUES (1,1,'Sean','Boyle','sb@gmail.com','7327778686','121','Resident','100 Wallabee Way','Bob','Email','Edit','Delete'),(4,1,'hey','hey','hey@hey.com','hey','1234','hey','hey','hey','Email','Edit','Delete'),(5,2,'Harry','Henderson','hc@gmail.com','7324567868','2387','Resident','123 Charge Here','Harrys Wife','Email','Edit','Delete');
+INSERT INTO `Residents` VALUES (1,1,'Sean','Boyle','sb@gmail.com','7327778686','155','Resident','100 Wallabee Way','Bob','Email','Edit','Delete'),(4,1,'hey','hey','hey@hey.com','hey','1234','hey','hey','hey','Email','Edit','Delete'),(5,2,'Harry','Henderson','hc@gmail.com','7324567868','2387','Resident','123 Charge Here','Harrys Wife','Email','Edit','Delete');
 /*!40000 ALTER TABLE `Residents` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,7 +102,7 @@ CREATE TABLE `Users` (
   `UserLevel` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`UserID`),
   UNIQUE KEY `Username` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,7 +111,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'Matt','Hunt','test@test.com','test','seed','Edit','Delete',1),(2,'johny','smithy','test2@test.com','jsmithy','seedy','Edit','Delete',0),(4,'sean','boyle','sb@gmail.com','seboy','test','Edit','Delete',0);
+INSERT INTO `Users` VALUES (5,'the tester','test','test@testing.com','shaTest','e6d43be3ea3d7fff4cf2a8364726f5e0175a23b0','Edit','Delete',0),(6,'Matt','Hunt','hmatt33@gmail.com','hmatt33','8e2876541905eeeda31abcf610c6cbf4db785988','Edit','Delete',1),(7,'test','2test','test@ttes.com','the','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3','Edit','Delete',0);
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -124,4 +124,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-16 16:13:35
+-- Dump completed on 2019-04-24 22:24:35

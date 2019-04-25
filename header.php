@@ -22,6 +22,9 @@
                   <a class="nav-link" href="password.php">Change Password</a>
               </li>
               <li class="nav-item">
+                  <a class="nav-link" href="all_residents.php">View All Residents</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="logout.php">Logout</a>
               </li>
             </ul>

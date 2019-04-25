@@ -39,18 +39,19 @@ The Team is just beginning on the implementation stage of the project. BRMS is a
 * added more session data to login
 * added check boxes to residents table so user can select multiple residents to email
 * code to email multiple residents mostly finished but not fully tested
+* code to email single residents is done but not fully tested
+  * emails seem to need an smtp server in order to work with php mail(), but none of us are sure how to do that
+  * email code seems to work but no actual email is sent without this smtp email server set up
+* encrypted all passwords as they are saved into the database and had login and edit and change passwords check for encryption and encrypt any new changes
+* fixed bug in admin page that kept updating session data when it was not supposed to
 
 ## Planned Additions:
 * CSS styling for site
 * Finish the FAQ page
 * displaying all residents no matter the building
 	* make this page be accessed from the header nav bar
-* allow the user to search for a resident within the all residents page
-* allow the user to email a selected resident
 * add a user info page where can see their own account information
   * move the change password button to the user info page
-* add more security by encrypting the passwords as they go into the Database
-  * do the same thing for any passwords edited or changed as well
 
 
 ### Acknowledgments/References/Sources

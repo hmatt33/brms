@@ -66,8 +66,7 @@
                 $q = "UPDATE Users SET Password=sha1('$newpass') WHERE Username='$user'";
                 $result = mysqli_query ($dbcon, $q);
                 if (mysqli_affected_rows($dbcon) == 1) {
-                    //if updated correctly echo:
-                    echo '<h3>Password has been changed.</h3>';
+                  header('Location: logout.php');
                 } else {
                     //if update failed
                     //error message

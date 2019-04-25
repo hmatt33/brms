@@ -13,16 +13,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="faq.html">FAQ</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="admin_page.php">Admin</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="password.php">Change Password</a>
-              </li>
-              <li class="nav-item">
                   <a class="nav-link" href="all_residents.php">View All Residents</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="faq.php">FAQ</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="admin_page.php">Admin Page</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="password.php">Change Your Password</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="logout.php">Logout</a>
@@ -33,5 +33,9 @@
     </div>
   </div>
 <h1 class="text-center font-weight-bold">Building and Resident Management System</h1>
+<?php
+session_start();
+echo '<h3 class="text-center"> Welcome ' . $_SESSION['FirstName'] . '</h3>';
+?>
 </body>
 </html>

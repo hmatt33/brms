@@ -105,9 +105,6 @@
 				//send the email
 				if(empty($errors)) {
 					mail($to, $subject, $msg, $headers);
-					echo $subject;
-					echo '<br>' . $msg;
-					echo '<br>' . $headers;
 				} else { //there is an error
 					echo '<p class="error">The following error(s) occurred:<br />';
 					//echo each error in the error array

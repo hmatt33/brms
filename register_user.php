@@ -1,4 +1,4 @@
-<?php                                           
+<?php
     session_start();
     if (!isset($_SESSION['UserLevel']) or ($_SESSION['UserLevel'] != 1)) {
         header("Location: buildings.php");
@@ -12,7 +12,7 @@
 <head>
     <title>Add a User</title>
     <meta charset=utf-8>
-</head> 
+</head>
 <body>
 <div id="container">
 <?php include("header.php"); ?>
@@ -20,8 +20,8 @@
 <!-- Start of add buildings page-->
         <div class="container"><h2>Register a User</h2></div>
 
-<?php 
-require ('mysqli_connect.php'); 
+<?php
+require ('mysqli_connect.php');
     //After clicking the add building link
     //has the form been submitted?
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -32,7 +32,7 @@ require ('mysqli_connect.php');
         } else {
             $fname = mysqli_real_escape_string($dbcon, trim($_POST['FirstName']));
         }
-        //look for the users last name 
+        //look for the users last name
         if (empty($_POST['LastName'])) {
             $errors[] = 'You forgot to enter the users last name.';
         } else {
@@ -68,7 +68,7 @@ require ('mysqli_connect.php');
             if (mysqli_num_rows($result) == 0) {
                 //if no errors and no duplicate
                 //add the new building
-                $q = "INSERT INTO Users(FirstName, LastName, Email, Username, Password) VALUES('$fname', '$lname', '$e', '$uname', '$p')";
+                $q = "INSERT INTO Users(FirstName, LastName, Email, Username, Password) VALUES('$fname', '$lname', '$e', '$uname', sha1('$p'))";
                 $result = mysqli_query ($dbcon, $q);
                 if (mysqli_affected_rows($dbcon) == 1) {
                     //if added correctly echo:
@@ -119,7 +119,7 @@ require ('mysqli_connect.php');
 </div>
 
 
-    
+
     <footer>
         <?php include('footer.html'); ?>
     </footer>
